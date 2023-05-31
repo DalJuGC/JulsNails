@@ -81,7 +81,7 @@ public class ServletTratamiento {
             }
         } else if(op.equals("buscar")){
             try{
-
+                
             }catch(SQLException e){
                 e.printStackTrace();
             }
