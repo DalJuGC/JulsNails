@@ -3,21 +3,21 @@ package datos;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Tratamiento;
+import modelo.Promocion;
 
-public class TratamientoDAO{
-    public static final String selectSQL = "SELECT * FROM Tratamiento";
-    public static final String insertSQL = "INSERT INTO Tratamiento(Nombre, Precio, Cod_Manicurista) VALUES (?,?,?)";
-    public static final  String updateSQL = "UPDATE Tratamiento SET Nombre = ?, Precio = ?, Cod_Manicurista = ? WHERE Codigo = ? ";
+public class PromocionDAO{
+    public static final String selectSQL = "SELECT * FROM Promocio";
+    public static final String insertSQL = "INSERT INTO Promocion(Nombre, Precio, Vigencia) VALUES (?,?,?)";
+    public static final  String updateSQL = "UPDATE Promocion SET Nombre = ?, Precio = ?, Vigencia = ? WHERE Codigo = ? ";
     public static final String deleteSQL = "DELETE FROM Tratamiento WHERE Codigo = ? ";
 
-    public List<Tratamiento> listar(){
+    public List<Promocion> listar(){
         Connection conn = null;
         Statement state = null;
         ResultSet result = null;
-        Tratamiento Trat = null;
+        Promocion Prom = null;
 
-        List<Tratamiento> Tratamientos = new ArrayList<>();
+        List<Promocion> Promociones = new ArrayList<>();
         try{
             conn = Conexion.getConnection();
             state = conn.createStatement();
@@ -27,29 +27,31 @@ public class TratamientoDAO{
                 int Codigo = result.getInt("Codigo");
                 String Nombre = result.getString("Nombre");
                 Float Precio = result.getFloat("Precio");
+                Boolean Vigencia = result.getBoolean("Vigencia");
                 
-                Trat = new Tratamiento(Codigo, Nombre, Precio);
-                Tratamientos.add(Trat);
+                Prom = new Promocion(Codigo, Nombre, Precio, Vigencia);
+                Promociones.add(Prom);
             }
 
             Conexion.close(result);
             Conexion.close((ResultSet) state);
             Conexion.close(conn);
 
-            for(Tratamiento tratamientos: Tratamientos){
-                System.out.println("Código: " + tratamientos.getCodigo());
-                System.out.println("Nombre: " + tratamientos.getNombre());
-                System.out.println("Precio: " + tratamientos.getPrecio());
+            for(Promocion promociones: Promociones){
+                System.out.println("Código: " + promociones.getCodigo());
+                System.out.println("Nombre: " + promociones.getNombre());
+                System.out.println("Precio: " + promociones.getPrecio());
+                System.out.println("Vigencia: " + promociones.getVigencia());
                 System.out.println(" \n ");
             }
 
         }catch (Exception e) {
             e.printStackTrace(System.out);
         } 
-        return Tratamientos;
+        return Promociones;
     }
 
-    public int insertar(Tratamiento tratamientos){
+    public int insertar(Promocion Promociones){
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -59,8 +61,9 @@ public class TratamientoDAO{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(insertSQL);
 
-            state.setString(1,tratamientos.getNombre());
-            state.setFloat(2,tratamientos.getPrecio());
+            state.setString(1,Promociones.getNombre());
+            state.setFloat(2,Promociones.getPrecio());
+            state.setBoolean(3, Promociones.getVigencia());
 
             registros = state.executeUpdate();
 
@@ -70,7 +73,7 @@ public class TratamientoDAO{
             Conexion.close(state);
             Conexion.close(conn);
 
-            Tratamiento tratamientosNvo = new Tratamiento();
+            Promocion PromocionNvo = new Promocion();
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -78,7 +81,7 @@ public class TratamientoDAO{
         return registros;
     }
 
-    public int modificar(Tratamiento tratamientos){
+    public int modificar(Promocion Promociones){
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -89,9 +92,10 @@ public class TratamientoDAO{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(updateSQL);
 
-            state.setString(1,tratamientos.getNombre());
-            state.setFloat(2,tratamientos.getPrecio());
-            state.setInt(4,tratamientos.getCodigo());
+            state.setString(1,Promociones.getNombre());
+            state.setFloat(2,Promociones.getPrecio());
+            state.setBoolean(3, Promociones.getVigencia());
+            state.setInt(4,Promociones.getCodigo());
 
             registros = state.executeUpdate();
 
@@ -101,7 +105,7 @@ public class TratamientoDAO{
 
             Conexion.close(state);
             Conexion.close(conn);
-           Tratamiento TratamientosMod = new Tratamiento();
+            Promocion TratamientosMod = new Promocion();
 
         }catch (SQLException e) {
             e.printStackTrace();
@@ -109,7 +113,7 @@ public class TratamientoDAO{
         return registros;
     }
 
-    public int borrar(Tratamiento tratamientos){
+    public int borrar(Promocion Promociones){
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -119,7 +123,7 @@ public class TratamientoDAO{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(deleteSQL);
 
-            state.setInt(1,tratamientos.getCodigo());
+            state.setInt(1,Promociones.getCodigo());
 
             registros = state.executeUpdate();
 
@@ -129,7 +133,7 @@ public class TratamientoDAO{
 
             Conexion.close(state);
             Conexion.close(conn);
-            Tratamiento tratamientosBor = new Tratamiento();
+            Promocion tratamientosBor = new Promocion();
 
         }catch (Exception e) {
             e.printStackTrace();
