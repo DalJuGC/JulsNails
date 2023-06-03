@@ -2,6 +2,9 @@
 --Proyecto DAW
 --Creacion de las tablas
 
+--COMENTARIO PROFE YULIANA BD
+  --¿Sólo 4 tablas?
+
 CREATE TABLE Cliente(
 	Codigo SERIAL PRIMARY KEY NOT NULL,
 	Nombre VARCHAR(50) NOT NULL,
