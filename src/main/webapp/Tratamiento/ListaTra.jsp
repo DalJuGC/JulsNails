@@ -22,7 +22,25 @@
         </ul>
     </nav>
 </header>
-<h2>Tratamientos</h2>
+<main>
+    <div>
+        <h1>Tratamientos</h1>
+        <button onclick="location.href='/ProyectoDAW/Tratamiento/RegistrarTrat.jsp'">Agregar tratamiento</button>
+        <button onclick="location.href='/ProyectoDAW/Tratamiento/BuscarTrat.jsp'">Buscar tratamiento</button>
+        <button onclick="location.href='/ProyectoDAW/Tratamiento/ModificarTrat.jsp'">Modificar tratamiento</button>
+        <table>
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Tratamiento</th>
+                <th>Precio</th>
+                <th>Empleado</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</main>
+
 </body>
 
 </html>

@@ -6,7 +6,7 @@
 
 <html>
     <head>
-        <title>Registro de Cita</title>
+        <title>Citas</title>
     </head>
     <body>
         <header>
@@ -20,10 +20,9 @@
                 </ul>
             </nav>
         </header>
-
         <main>
             <div>
-                <form method="post" action="/src/main/java/controlador/Cita/SVRCita.java">
+                <form method="post" action="/ProyectoDAW/SVRCita.java">
                     <p>Cliente <input type="text" name="Nombre"></p>
                     <p>Fecha <input type="date" name="Fecha"></p>
                     <p>Horario <input type="time" name="Horario"></p>
