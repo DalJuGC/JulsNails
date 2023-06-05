@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Julit
+  Date: 04/06/2023
+  Time: 06:36 p. m.
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -17,24 +24,23 @@
 </header>
 <main>
     <div>
-        <h1>Citas Registradas</h1>
-        <button onclick="location.href='/ProyectoDAW/Cita/RegistrarCita.jsp'">Registrar cita</button>
-        <button onclick="location.href='/ProyectoDAW/Cita/BuscarCita.jsp'">Buscar cita</button>
-        <button onclick="location.href='/ProyectoDAW/Cita/ModificarCita.jsp'">Modificar cita</button>
+        <h1>Promociones</h1>
+        <button onclick="location.href='/ProyectoDAW/Promocion/RegistrarProm.jsp'">Agregar promoción</button>
+        <button onclick="location.href='/ProyectoDAW/Promocion/BuscarProm.jsp'">Buscar Promoción</button>
+        <button onclick="location.href='/ProyectoDAW/Promocion/ModificarProm.jsp'">Modificar promoción</button>
         <table>
             <thead>
             <tr>
                 <th>Código</th>
-                <th>Cliente</th>
-                <th>Fecha</th>
-                <th>Horario</th>
-                <th>Tratamiento</th>
                 <th>Promoción</th>
+                <th>Precio</th>
+                <th>Vigencia</th>
             </tr>
             </thead>
         </table>
     </div>
 </main>
+
 </body>
 
 </html>
