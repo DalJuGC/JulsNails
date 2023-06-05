@@ -18,7 +18,7 @@
         </header>
     <main>
         <div>
-            <form method="post" action="/ProyectoDAW/SVRProm.java">
+            <form method="post" action="/ProyectoDAW/Cita/SVRProm.java">
                 <p>Nombre de la promoción <input type="text" name="Nombre"></p>
                 <p>Precio <input type="number" name="Precio"></p>
                 <p>Vigencia <input type="" name="Vigencia"></p>

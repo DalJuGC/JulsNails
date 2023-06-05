@@ -19,13 +19,11 @@ public class SVRCita extends HttpServlet{
     private DataSource conexion;
 
     private Cita cita;
-    private int Codigo;
-
-    
+    //private int Codigo;
 
     @Override
     protected void doPost(HttpServletRequest rq, HttpServletResponse rs) throws IOException, ServletException{
-        Codigo = Integer.parseInt(rq.getParameter("Codigo"));
+        Integer Codigo = Integer.parseInt(rq.getParameter("Codigo"));
         String Fecha = rq.getParameter("Fecha");
         String Horario = rq.getParameter("Horario");
         String Cod_Cliente = rq.getParameter("Cod_Cliente");
