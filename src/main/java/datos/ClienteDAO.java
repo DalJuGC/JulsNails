@@ -38,20 +38,19 @@ public class ClienteDAO{
             Conexion.close(state);
             Conexion.close(conn);
 
-            for(Cliente clientes: Cliente){
-                System.out.println("Código: " + clientes.getCodigo());
-                System.out.println("Nombre: " + clientes.getNombre());
-                System.out.println("Telefono: " + clientes.getTelefono());
+            for(Cliente cliente: Cliente){
+                System.out.println("Código: " + cliente.getCodigo());
+                System.out.println("Nombre: " + cliente.getNombre());
+                System.out.println("Telefono: " + cliente.getTelefono());
                 System.out.println(" \n ");
             }
-
         }catch (Exception e) {
             e.printStackTrace(System.out);
         } 
         return Cliente;
     }
 
-    public void insertar(Cliente clientes) throws SQLDataException{
+    public void insertar(Cliente clientes) throws SQLException{
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -67,7 +66,7 @@ public class ClienteDAO{
             registros = state.executeUpdate();
 
             if(registros>0)
-                System.out.println("Registtro agregado correctamente");
+                System.out.println("Registro agregado correctamente");
 
             Conexion.close(state);
             Conexion.close(conn);
@@ -77,7 +76,7 @@ public class ClienteDAO{
         }
     }
 
-    public void modificarNom(int Codigo, String Nombre) throws SQLDataException{
+    public void modificarNom(int Codigo, String Nombre) throws SQLException{
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -133,7 +132,7 @@ public class ClienteDAO{
         }
     }
 
-    public void borrar(int Codigo) throws SQLDataException{
+    public void borrar(int Codigo) throws SQLException{
 
         Connection conn = null;
         PreparedStatement state = null;
