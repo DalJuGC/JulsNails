@@ -19,7 +19,7 @@ public class ClienteDAO{
         ResultSet result = null;
         Cliente Cli = null;
 
-        List<Cliente> Clientes = new ArrayList<>();
+        List<Cliente> Cliente = new ArrayList<>();
         try{
             conn = Conexion.getConnection();
             state = conn.createStatement();
@@ -31,14 +31,14 @@ public class ClienteDAO{
                 String Telefono = result.getString("Telefono");
 
                 Cli = new Cliente(Codigo, Nombre, Telefono);
-                Clientes.add(Cli);
+                Cliente.add(Cli);
             }
 
             Conexion.close(result);
-            Conexion.close((ResultSet) state);
+            Conexion.close(state);
             Conexion.close(conn);
 
-            for(Cliente clientes: Clientes){
+            for(Cliente clientes: Cliente){
                 System.out.println("Código: " + clientes.getCodigo());
                 System.out.println("Nombre: " + clientes.getNombre());
                 System.out.println("Telefono: " + clientes.getTelefono());
@@ -48,7 +48,7 @@ public class ClienteDAO{
         }catch (Exception e) {
             e.printStackTrace(System.out);
         } 
-        return Clientes;
+        return Cliente;
     }
 
     public void insertar(Cliente clientes) throws SQLDataException{
