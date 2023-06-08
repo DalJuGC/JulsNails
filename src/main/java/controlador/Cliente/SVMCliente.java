@@ -11,31 +11,35 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import java.sql.SQLException;
-import java.io.IOException;
 import java.sql.Connection;
+import java.io.IOException;
 
-@WebServlet(name = "SVRCliente", urlPatterns ={"/SVRCliente"})
-public class SVRCliente extends HttpServlet {
+@WebServlet(name = "SVMCliente", urlPatterns = {"/SVMCliente"})
+public class SVMCliente extends HttpServlet {
     @Resource(name = "jdbc/database")
     private DataSource conexion;
-
+    private int Codigo;
     private String Nombre;
     private String Telefono;
 
     @Override
     protected void doPost(HttpServletRequest rq, HttpServletResponse rs) throws IOException{
+        Codigo = (int)rq.getSession().getAttribute("Codigo");
         Nombre = rq.getParameter("Nombre");
         Telefono = rq.getParameter("Telefono");
-
         try{
             Connection connection = conexion.getConnection();
             ClienteDAO cliDAO = new ClienteDAO();
-            Cliente cli = new Cliente(Nombre, Telefono);
-            cliDAO.insertar(cli);
+            Cliente cli = new Cliente();
+            rq.getSession().setAttribute("datos", cli);
+            if(Nombre != null && Telefono != null){
+                cliDAO.modificarNom(Codigo, Nombre);
+                cliDAO.modificarTel(Codigo, Telefono);
+            }
             connection.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
-        rs.sendRedirect("/ProyectoDAW/Cliente/RegistrarCliente.jsp");
+        rs.sendRedirect("/ProyectoDAW/Cliente/ModificarCliente.jsp");
     }
 }
