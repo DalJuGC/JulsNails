@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="modelo.Cita"%>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="datos.CitaDAO"%>
 
 <html>
@@ -26,6 +27,7 @@
         <button onclick="location.href='/ProyectoDAW/Cita/RegistrarCita.jsp'">Registrar cita</button>
         <button onclick="location.href='/ProyectoDAW/Cita/BuscarCita.jsp'">Buscar cita</button>
         <button onclick="location.href='/ProyectoDAW/Cita/ModificarCita.jsp'">Modificar cita</button>
+
         <table>
             <thead>
             <tr>
@@ -36,9 +38,19 @@
                 <th>Tratamiento</th>
                 <th>Promoción</th>
             </tr>
-
+            <c:forEach items="${Cita}" var="c">
+                <tr>
+                    <td>${c.getCocido}</td>
+                    <td>${c.Cod_Cliente}</td>
+                    <td>${c.Fecha}</td>
+                    <td>${c.Horario}</td>
+                    <td>${c.Cod_Tratamiento}</td>
+                    <td>${c.Cod_Promocion}</td>
+                </tr>
+            </c:forEach>
             </thead>
         </table>
+
     </div>
 </main>
 </body>
