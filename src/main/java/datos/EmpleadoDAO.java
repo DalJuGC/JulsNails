@@ -9,8 +9,8 @@ import java.util.concurrent.ExecutionException;
 
 public class EmpleadoDAO {
     public static final String selectSQL = "SELECT * FROM Empleado";
-    public static final String insertSQL = "INSERT INTO Empleado(Nombre, Cargo, Telefono) VALUES (?,?,?)";
-    public static final String updateSQL = "UPDATE Empleado SET Nombre = ?, Cargo = ?, Telefono = ?";
+    public static final String insertSQL = "INSERT INTO Empleado(Nombre, Cargo, Telefono, Domicilio, Fech_Con) VALUES (?,?,?,?,?)";
+    public static final String updateSQL = "UPDATE Empleado SET Nombre = ?, Cargo = ?, Telefono = ?, Domicilio = ?, Fech_Con = ?";
     public static final String deleteSQL = "DELETE FROM Empleado WHERE Codigo = ?";
 
     //Muestra los clientes
@@ -32,8 +32,10 @@ public class EmpleadoDAO {
                 String Nombre = result.getString("Nombre");
                 String Cargo = result.getString("Cargo");
                 String Telefono = result.getString("Telefono");
+                String Domicilio = result.getString("Domicilio");
+                String Fech_Con = result.getString("Fech_Con");
 
-                emp = new Empleado(Codigo, Nombre, Cargo, Telefono);
+                emp = new Empleado(Codigo, Nombre, Cargo, Telefono, Domicilio, Fech_Con);
                 Empleado.add(emp);
             }
             Conexion.close(result);
@@ -45,6 +47,8 @@ public class EmpleadoDAO {
                 System.out.println("Nombre: "+ empleado.getNombre());
                 System.out.println("Cargo: "+ empleado.getCargo());
                 System.out.print("Telefono: "+ empleado.getTelefono());
+                System.out.print("Domicilio: "+ empleado.getDomicilio());
+                System.out.print("Fech_Con "+ empleado.getFech_Con());
                 System.out.println(" \n ");
             }
         }catch (Exception e){
@@ -65,6 +69,8 @@ public class EmpleadoDAO {
             state.setString(1, empleado.getNombre());
             state.setString(2, empleado.getCargo());
             state.setString(3, empleado.getTelefono());
+            state.setString(4, empleado.getDomicilio());
+            state.setString(5, empleado.getFech_Con());
 
             registros = state.executeUpdate();
             if(registros>0)
@@ -133,6 +139,52 @@ public class EmpleadoDAO {
             state = conn.prepareStatement(updateSQL);
 
             state.setString(1, Telefono);
+            state.setInt(2, Codigo);
+
+            registros = state.executeUpdate();
+            if(registros>0)
+                System.out.println("Registro actualizado");
+
+            Conexion.close(state);
+            Conexion.close(conn);
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void modificarDom(int Codigo, String Domicilio) throws SQLException{
+        Connection conn = null;
+        PreparedStatement state = null;
+        int registros = 0;
+
+        try{
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(updateSQL);
+
+            state.setString(1, Domicilio);
+            state.setInt(2, Codigo);
+
+            registros = state.executeUpdate();
+            if(registros>0)
+                System.out.println("Registro actualizado");
+
+            Conexion.close(state);
+            Conexion.close(conn);
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void modificarFech(int Codigo, String Fech_Con) throws SQLException{
+        Connection conn = null;
+        PreparedStatement state = null;
+        int registros = 0;
+
+        try{
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(updateSQL);
+
+            state.setString(1, Fech_Con);
             state.setInt(2, Codigo);
 
             registros = state.executeUpdate();
