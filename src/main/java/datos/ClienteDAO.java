@@ -11,7 +11,7 @@ public class ClienteDAO{
     public static final String insertSQL = "INSERT INTO Cliente(Nombre, Telefono) VALUES (?,?)";
     public static final  String updateSQL = "UPDATE Cliente SET Nombre = ?, Telefono = ? WHERE Codigo = ? ";
     public static final String deleteSQL = "DELETE FROM Cliente WHERE Codigo = ? ";
-    public static final String consultSQL = "SELECT * FROM Cliente WHERE Codigo = ?;";
+    public static final String consultSQL = "SELECT * FROM Cliente WHERE Codigo = ?";
     
     //Muestra los clientes
     public List<Cliente> seleccionar() throws SQLException{

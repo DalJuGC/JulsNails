@@ -3,15 +3,16 @@ package controlador.Empleado;
 import modelo.Empleado;
 import datos.EmpleadoDAO;
 
-import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.io.IOException;
-import java.sql.Connection;
+
 import java.sql.SQLException;
+import java.sql.Connection;
+import java.io.IOException;
 
 @WebServlet(name = "SVMEmpleado", urlPatterns = {"/SVMEmpleado"})
 public class SVMEmpleado extends HttpServlet {

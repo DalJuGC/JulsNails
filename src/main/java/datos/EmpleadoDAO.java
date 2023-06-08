@@ -1,5 +1,6 @@
 package datos;
 
+import modelo.Cliente;
 import modelo.Empleado;
 
 import java.util.ArrayList;
@@ -12,10 +13,11 @@ public class EmpleadoDAO {
     public static final String insertSQL = "INSERT INTO Empleado(Nombre, Cargo, Telefono, Domicilio, Fech_Con) VALUES (?,?,?,?,?)";
     public static final String updateSQL = "UPDATE Empleado SET Nombre = ?, Cargo = ?, Telefono = ?, Domicilio = ?, Fech_Con = ?";
     public static final String deleteSQL = "DELETE FROM Empleado WHERE Codigo = ?";
+    public static final String consultSQL = "SELECT * FROM Cliente WHERE Codigo = ?";
 
     //Muestra los clientes
 
-    public List<Empleado> seleccionar() throws SQLException{
+    public List<Empleado> listar(int Codigo) throws SQLException{
         Connection conn = null;
         Statement state = null;
         ResultSet result = null;
@@ -28,7 +30,7 @@ public class EmpleadoDAO {
             result = state.executeQuery(selectSQL);
 
             while(result.next()){
-                int Codigo = result.getInt("Codigo");
+                Codigo = result.getInt("Codigo");
                 String Nombre = result.getString("Nombre");
                 String Cargo = result.getString("Cargo");
                 String Telefono = result.getString("Telefono");
@@ -196,6 +198,27 @@ public class EmpleadoDAO {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Empleado buscar(int Codigo) throws SQLException{
+
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+
+        conn = Conexion.getConnection();
+        state = conn.prepareStatement(consultSQL);
+
+        Empleado empleado = new Empleado(result.getInt("Codigo"),
+                result.getString("Nombre"),
+                result.getString("Cargo"),
+                result.getString("Telefono"),
+                result.getString("Domicilio"),
+                result.getString("Fech_Con"));
+        Conexion.close(result);
+        Conexion.close(state);
+
+        return empleado;
     }
 
     public void borrar(int Codigo) throws SQLException{
