@@ -151,7 +151,7 @@ public class ClienteDAO{
         return cliente;
     }
 
-    public void borrar(Cliente cliente) throws SQLException{
+    public void borrar(int Codigo) throws SQLException{
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -161,7 +161,7 @@ public class ClienteDAO{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(deleteSQL);
 
-            state.setInt(1,cliente.getCodigo());
+            state.setInt(1,Codigo);
             registros = state.executeUpdate();
 
             if(registros>0)
