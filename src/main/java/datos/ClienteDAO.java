@@ -11,6 +11,7 @@ public class ClienteDAO{
     public static final String insertSQL = "INSERT INTO Cliente(Nombre, Telefono) VALUES (?,?)";
     public static final  String updateSQL = "UPDATE Cliente SET Nombre = ?, Telefono = ? WHERE Codigo = ? ";
     public static final String deleteSQL = "DELETE FROM Cliente WHERE Codigo = ? ";
+    public static final String consultSQL = "SELECT * FROM Cliente WHERE Codigo = ?;";
     
     //Muestra los clientes
     public List<Cliente> seleccionar() throws SQLException{
@@ -130,6 +131,24 @@ public class ClienteDAO{
         }catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Cliente buscar(int Codigo) throws SQLException{
+
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+
+        conn = Conexion.getConnection();
+        state = conn.prepareStatement(consultSQL);
+
+        Cliente cliente = new Cliente(result.getInt("Codigo"),
+                result.getString("Nombre"),
+                result.getString("Telefono"));
+        Conexion.close(result);
+        Conexion.close(state);
+
+        return cliente;
     }
 
     public void borrar(Cliente cliente) throws SQLException{
