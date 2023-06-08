@@ -50,7 +50,7 @@ public class ClienteDAO{
         return Cliente;
     }
 
-    public void insertar(Cliente clientes) throws SQLException{
+    public void insertar(Cliente cliente) throws SQLException{
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -60,8 +60,8 @@ public class ClienteDAO{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(insertSQL);
 
-            state.setString(1,clientes.getNombre());
-            state.setString(2,clientes.getTelefono());
+            state.setString(1,cliente.getNombre());
+            state.setString(2,cliente.getTelefono());
 
             registros = state.executeUpdate();
 
@@ -132,7 +132,7 @@ public class ClienteDAO{
         }
     }
 
-    public void borrar(int Codigo) throws SQLException{
+    public void borrar(Cliente cliente) throws SQLException{
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -142,8 +142,7 @@ public class ClienteDAO{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(deleteSQL);
 
-            state.setInt(1,Codigo);
-
+            state.setInt(1,cliente.getCodigo());
             registros = state.executeUpdate();
 
             if(registros>0)

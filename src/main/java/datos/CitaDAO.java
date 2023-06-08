@@ -1,14 +1,15 @@
 package datos;
 
+import modelo.Cita;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Cita;
 
 public class CitaDAO{
     public static final String selectSQL = "SELECT * FROM Cita";
-    public static final String insertSQL = "INSERT INTO Cita(Fecha, Horario, Cod_Cliente, Cod_Tratamiento) VALUES (?,?,?,?)";
-    public static final  String updateSQL = "UPDATE Cita_Disp SET Fecha = ?, Horario = ?, Cod_Cliente = ?, Cod_Tratamiento = ? WHERE Codigo = ? ";
+    public static final String insertSQL = "INSERT INTO Cita(Fecha, Horario, Cod_Cliente, Cod_Tratamiento, Cod_Promocion) VALUES (?,?,?,?,?)";
+    public static final  String updateSQL = "UPDATE Cita_Disp SET Fecha = ?, Horario = ?, Cod_Cliente = ?, Cod_Tratamiento = ?, Cod_Promocion = ? WHERE Codigo = ? ";
     public static final String deleteSQL = "DELETE FROM Cita WHERE Codigo = ? ";
 
     public List<Cita> listar() throws SQLException{
@@ -63,7 +64,9 @@ public class CitaDAO{
         try{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(insertSQL);
-            
+
+
+
             state.setString(1, cita.getFecha());
             state.setString(2,cita.getHorario());
             state.setString(3,cita.getCod_Cliente());

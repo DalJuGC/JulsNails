@@ -1,11 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="modelo.Cita"%>
-<%@ page import="datos.CitaDAO"%>
-
+<%@ page import="modelo.Cliente"%>
+<%@ page import="java.util.List" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Citas registradas</title>
+    <title>Clientes</title>
 </head>
 <body>
 <header>
@@ -23,24 +21,20 @@
 <main>
     <div>
         <h1>Citas Registradas</h1>
-        <button onclick="location.href='/ProyectoDAW/Cita/RegistrarCita.jsp'">Registrar cita</button>
-        <button onclick="location.href='/ProyectoDAW/Cita/BuscarCita.jsp'">Buscar cita</button>
-        <button onclick="location.href='/ProyectoDAW/Cita/ModificarCita.jsp'">Modificar cita</button>
+        <button onclick="location.href='/ProyectoDAW/Cliente/RegistrarCliente.jsp'">Registrar cliente</button>
+        <button onclick="location.href='/ProyectoDAW/Cliente/BuscarCliente.jsp'">Buscar cliente</button>
+        <button onclick="location.href='/ProyectoDAW/Cliente/ModificarCliente.jsp'">Modificar cliente</button>
         <table>
             <thead>
             <tr>
                 <th>Código</th>
-                <th>Cliente</th>
-                <th>Fecha</th>
-                <th>Horario</th>
-                <th>Tratamiento</th>
-                <th>Promoción</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
             </tr>
-
             </thead>
+            
         </table>
     </div>
 </main>
 </body>
-
 </html>

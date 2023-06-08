@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.sql.SQLException;
 import java.sql.Connection;
+import java.util.ListIterator;
 //import java.io.*;
 //import java.sql.*;
 //import java.util.*;
@@ -40,7 +41,7 @@ public class ServletCita extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
-        String op = (rq.getParameter("opc") != null) ? rq.getParameter("opc") : "list";
+        String op = (rq.getParameter("op") != null) ? rq.getParameter("op") : "lista";
 
         if (op.equals("lista")) {
             try {
@@ -126,7 +127,8 @@ public class ServletCita extends HttpServlet {
                 connection.close();
             }catch(SQLException e){
                 rq.getSession().setAttribute("Encontrado", false);
-                rq.getSession().setAttribute("Tratamiento", new LinkedList<Tratamiento>());
+                rq.getSession().setAttribute("Tratamiento", new LinkedList<Tratamiento>() {
+                });
                 e.printStackTrace();
             }
         }else if(op.equals("cancelar")){

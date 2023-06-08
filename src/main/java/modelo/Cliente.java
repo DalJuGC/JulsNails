@@ -15,13 +15,11 @@ public class Cliente implements Serializable{
         this.Codigo = Codigo;
     }
 
-    //Insertar
     public Cliente(String Nombre, String Telefono){
         this.Nombre = Nombre;
         this.Telefono = Telefono;
     }
 
-    //Modificar
     public Cliente(int Codigo, String Nombre, String Telefono){
         this.Codigo = Codigo;
         this.Nombre = Nombre;

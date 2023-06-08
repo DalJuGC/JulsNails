@@ -4,12 +4,13 @@ import java.io.Serializable;
 
 public class Cita implements Serializable{
     private static final long serialVersionUID = 1L;
-    private int Codigo;
+    private static int Codigo;
     private String Fecha;
     private String Horario;
     private String Cod_Cliente;
     private String Cod_Tratamiento;
     private String Cod_Promocion;
+    private Object Cita;
 
     public Cita(){
     }
@@ -20,25 +21,25 @@ public class Cita implements Serializable{
     }
 
     //Insertar
-    public Cita( int Codigo, String Fecha, String Horario, String Cod_Cliente, String Cod_Tratamiento,  String Cod_Promocion){
+    public Cita(  int Codigo,String Cod_Cliente, String Fecha, String Horario, String Cod_Tratamiento,  String Cod_Promocion){
         this.Codigo = Codigo;
+        this.Cod_Cliente = Cod_Cliente;
         this.Fecha = Fecha;
         this.Horario = Horario;
         this.Cod_Tratamiento = Cod_Tratamiento;
-        this.Cod_Cliente = Cod_Cliente;
         this.Cod_Promocion = Cod_Promocion;
     }
 
     //Modificar
-    public Cita(String Fecha, String Horario, String Cod_Cliente, String Cod_Tratamiento,  String Cod_Promocion){
+    public Cita(String Cod_Cliente, String Fecha, String Horario, String Cod_Tratamiento,  String Cod_Promocion){
+        this.Cod_Cliente = Cod_Cliente;
         this.Fecha = Fecha;
         this.Horario = Horario;
-        this.Cod_Cliente = Cod_Cliente;
         this.Cod_Tratamiento = Cod_Tratamiento;
         this.Cod_Promocion = Cod_Promocion;
     }
 
-    public int getCodigo() {
+    public static int getCodigo() {
         return Codigo;
     }
 
@@ -89,4 +90,13 @@ public class Cita implements Serializable{
     public String setCod_Promocion(){
         return Cod_Promocion;
     }
+
+    public Object getCita() {
+        return Cita;
+    }
+
+    public void setCita(Object Cita) {
+        this.Cita = Cita;
+    }
+
 }

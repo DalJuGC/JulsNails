@@ -1,20 +1,19 @@
 package controlador;
 
 import datos.Conexion;
-import datos.ClienteDAO;
 import modelo.Cliente;
+import datos.ClienteDAO;
 
 import javax.servlet.annotation.WebServlet;
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 import javax.servlet.http.*;
-//import javax.sql.DataSource;
-//import javax.servlet.annotation.*;
 import javax.servlet.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Connection;
-//import java.io.*;
-//import java.sql.*;
+import java.io.*;
+import java.sql.*;
 import java.util.*;
 
 @WebServlet(name = "ServletCliente", urlPatterns = {"/ServletCliente"})
@@ -103,7 +102,7 @@ public class ServletCliente extends HttpServlet{
             try{
                 Connection connection = Conexion.getConnection();
                 ClienteDAO clienteDAO = new ClienteDAO();
-                clienteDAO.borrar(Codigo);
+                clienteDAO.borrar(cliente);
                 connection.close();
             }catch(SQLException e){
                 e.printStackTrace();
