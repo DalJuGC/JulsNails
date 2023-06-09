@@ -26,7 +26,7 @@ public class SVBsCliente extends HttpServlet {
         Codigo = Integer.parseInt(rq.getParameter("Codigo"));
         try{
             Connection connection = conexion.getConnection();
-            ClienteDAO cliDAO = new ClienteDAO();
+            ClienteDAO cliDAO = new ClienteDAO(connection);
             Cliente cli = cliDAO.buscar(Codigo);
 
             if(cli != null){

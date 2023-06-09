@@ -2,79 +2,79 @@ package datos;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 import modelo.Cliente;
 
 public class ClienteDAO{
     public static final String selectSQL = "SELECT * FROM Cliente";
-    public static final String insertSQL = "INSERT INTO Cliente(Nombre, Telefono) VALUES (?,?)";
+    public static final String insertSQL = "INSERT INTO Cliente(Nombre, Telefono) VALUES (?,?);";
     public static final  String updateSQL = "UPDATE Cliente SET Nombre = ?, Telefono = ? WHERE Codigo = ? ";
     public static final String deleteSQL = "DELETE FROM Cliente WHERE Codigo = ? ";
     public static final String consultSQL = "SELECT * FROM Cliente WHERE Codigo = ?";
-    
+    private Connection connection;
+
+    public ClienteDAO(Connection connection) {
+        this.connection = connection;
+    }
+
     //Muestra los clientes
-    public List<Cliente> seleccionar() throws SQLException{
+    public ArrayList<Cliente> seleccionar() throws SQLException{
+        ArrayList<Cliente> lista = new ArrayList<>();
         Connection conn = null;
         Statement state = null;
         ResultSet result = null;
         Cliente Cli = null;
-
-        List<Cliente> Cliente = new ArrayList<>();
         try{
             conn = Conexion.getConnection();
             state = conn.createStatement();
             result = state.executeQuery(selectSQL);
 
-            while(result.next()){
-                int Codigo = result.getInt("Codigo");
-                String Nombre = result.getString("Nombre");
-                String Telefono = result.getString("Telefono");
+            while (result.next()){
+                int Codigo = result.getInt("codigo");
+                String Nombre = result.getString("combre");
+                String Telefono = result.getString("telefono");
 
                 Cli = new Cliente(Codigo, Nombre, Telefono);
-                Cliente.add(Cli);
+                lista.add(Cli);
             }
 
             Conexion.close(result);
             Conexion.close(state);
             Conexion.close(conn);
-
-            for(Cliente cliente: Cliente){
-                System.out.println("Código: " + cliente.getCodigo());
-                System.out.println("Nombre: " + cliente.getNombre());
-                System.out.println("Telefono: " + cliente.getTelefono());
-                System.out.println(" \n ");
-            }
-        }catch (Exception e) {
-            e.printStackTrace(System.out);
+        } catch (Exception e) {
+            e.printStackTrace();
         } 
-        return Cliente;
+        return lista;
     }
 
     public void insertar(Cliente cliente) throws SQLException{
 
         Connection conn = null;
         PreparedStatement state = null;
-        int registros=0;
+        //int registros=0;
 
-        try{
+        //try{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(insertSQL);
 
-            state.setString(1,cliente.getNombre());
-            state.setString(2,cliente.getTelefono());
+            state.setString(1, cliente.getNombre());
+            state.setString(2, cliente.getTelefono());
+            state.executeUpdate();
 
-            registros = state.executeUpdate();
+           // registros = state.executeUpdate();
 
-            if(registros>0)
-                System.out.println("Registro agregado correctamente");
+            //if(registros>0)
+              //  System.out.println("Registro agregado correctamente");
 
-            Conexion.close(state);
-            Conexion.close(conn);
+            //Conexion.close(state);
+            //Conexion.close(conn);
 
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+            //Cliente cliNew = new Cliente();
+
+       // }catch (Exception e) {
+           // e.printStackTrace();
+        //}
+       // return registros;
     }
 
     public void modificarNom(int Codigo, String Nombre) throws SQLException{

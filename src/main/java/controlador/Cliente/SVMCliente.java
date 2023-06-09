@@ -29,7 +29,7 @@ public class SVMCliente extends HttpServlet {
         Telefono = rq.getParameter("Telefono");
         try{
             Connection connection = conexion.getConnection();
-            ClienteDAO cliDAO = new ClienteDAO();
+            ClienteDAO cliDAO = new ClienteDAO(connection);
             Cliente cli = new Cliente();
             rq.getSession().setAttribute("datos", cli);
             if(Nombre != null && Telefono != null){

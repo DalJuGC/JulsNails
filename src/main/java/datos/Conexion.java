@@ -13,12 +13,12 @@ public class Conexion {
 
         try {
             Class.forName(driver);
-            System.out.println("Conexion establecida");
+            //System.out.println("Conexion establecida");
             return DriverManager.getConnection(server, user, pswd);
-        } catch (SQLException ex) {
+        } catch (SQLException e) {
             System.out.println("Error al intentar conectarse a la BD" + server);
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Error");
         }
         return null;
     }
@@ -27,24 +27,24 @@ public class Conexion {
     public static void close(ResultSet result){
         try {
             result.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     public static void close(Statement state){
         try {
             state.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     public static void close(Connection conn){
         try {
             conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

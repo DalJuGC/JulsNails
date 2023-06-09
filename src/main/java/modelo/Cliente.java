@@ -1,4 +1,5 @@
 package modelo;
+
 import java.io.Serializable;
 
 public class Cliente implements Serializable{
@@ -10,7 +11,6 @@ public class Cliente implements Serializable{
     public Cliente(){
     }
 
-    //Borrar
     public Cliente(int Codigo){
         this.Codigo = Codigo;
     }
@@ -48,5 +48,10 @@ public class Cliente implements Serializable{
 
     public void setTelefono(String Telefono) {
         this.Telefono = Telefono;
+    }
+
+    @Override
+    public String toString(){
+        return "Cliente{" + "Codigo=" + Codigo + ",Nombre=" + Nombre + ",Telefono=" + Telefono + "}";
     }
 }

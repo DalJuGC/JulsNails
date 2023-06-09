@@ -25,7 +25,7 @@ public class SVBrCliente extends HttpServlet {
         Codigo = Integer.parseInt(rq.getParameter("Codigo"));
         try{
             Connection connection = conexion.getConnection();
-            ClienteDAO cliDAO = new ClienteDAO();
+            ClienteDAO cliDAO = new ClienteDAO(connection);
             cliDAO.borrar(Codigo);
             connection.close();
         }catch (SQLException e){

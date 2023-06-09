@@ -30,11 +30,11 @@ public class SVRCliente extends HttpServlet {
 
         try{
             Connection connection = conexion.getConnection();
-            ClienteDAO cliDAO = new ClienteDAO();
+            ClienteDAO cliDAO = new ClienteDAO(connection);
             Cliente cli = new Cliente(Nombre, Telefono);
             cliDAO.insertar(cli);
             connection.close();
-        }catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
         rs.sendRedirect("/ProyectoDAW/Cliente/RegistrarCliente.jsp");

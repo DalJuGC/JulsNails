@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 @WebServlet(name = "SVLCliente", urlPatterns = {"/SVLCliente"})
 public class SVLCliente extends HttpServlet {
@@ -23,11 +23,11 @@ public class SVLCliente extends HttpServlet {
     public void doGet(HttpServletRequest rq, HttpServletResponse rs) throws IOException{
         try{
             Connection connection = conexion.getConnection();
-            ClienteDAO cliDAO = new ClienteDAO();
-            List<Cliente> lista = cliDAO.seleccionar();
-            rq.getSession().setAttribute("lista", lista);
+            ClienteDAO cliDAO = new ClienteDAO(connection);
+            rq.getSession().setAttribute("datos", cliDAO.seleccionar());
             connection.close();
         }catch (SQLException e){
+            rq.getSession().setAttribute("datos", new ArrayList<Cliente>());
             e.printStackTrace();
         }
         rs.sendRedirect("/ProyectoDAW/Cliente/ListaCliente.jsp");
