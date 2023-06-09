@@ -12,7 +12,7 @@ public class CitaDAO{
     public static final  String updateSQL = "UPDATE Cita_Disp SET Fecha = ?, Horario = ?, Cod_Cliente = ?, Cod_Tratamiento = ?, Cod_Promocion = ? WHERE Codigo = ? ";
     public static final String deleteSQL = "DELETE FROM Cita WHERE Codigo = ? ";
 
-    public List<Cita> listar(int codigo) throws SQLException{
+    public List<Cita> seleccionar() throws SQLException{
         Connection conn = null;
         Statement state = null;
         ResultSet result = null;

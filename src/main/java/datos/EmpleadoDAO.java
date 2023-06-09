@@ -17,7 +17,7 @@ public class EmpleadoDAO {
 
     //Muestra los clientes
 
-    public List<Empleado> listar(int Codigo) throws SQLException{
+    public List<Empleado> seleccionar() throws SQLException{
         Connection conn = null;
         Statement state = null;
         ResultSet result = null;
@@ -30,7 +30,7 @@ public class EmpleadoDAO {
             result = state.executeQuery(selectSQL);
 
             while(result.next()){
-                Codigo = result.getInt("Codigo");
+                int Codigo = result.getInt("Codigo");
                 String Nombre = result.getString("Nombre");
                 String Cargo = result.getString("Cargo");
                 String Telefono = result.getString("Telefono");
