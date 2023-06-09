@@ -106,7 +106,7 @@ public class PromocionDAO{
         }
     }
 
-    public void modificarPrecio(int Codigo, Float Precio){
+    public void modificarPrecio(int Codigo, String Precio){
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -117,7 +117,7 @@ public class PromocionDAO{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(updateSQL);
 
-            state.setFloat(1,Precio);
+            state.setString(1,Precio);
             state.setInt(2,Codigo);
 
             registros = state.executeUpdate();
@@ -134,7 +134,7 @@ public class PromocionDAO{
         }
     }
 
-    public void modificarVig(int Codigo, Boolean Vigencia){
+    public void modificarVig(int Codigo, String Vigencia){
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -145,7 +145,7 @@ public class PromocionDAO{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(updateSQL);
 
-            state.setBoolean(1,Vigencia);
+            state.setString(1,Vigencia);
             state.setInt(2,Codigo);
 
             registros = state.executeUpdate();
