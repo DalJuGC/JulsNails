@@ -138,17 +138,21 @@ public class ClienteDAO{
         Connection conn = null;
         PreparedStatement state = null;
         ResultSet result = null;
+        Cliente Cliente = null;
+        try{
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(consultSQL);
 
-        conn = Conexion.getConnection();
-        state = conn.prepareStatement(consultSQL);
+            Cliente cliente = new Cliente(result.getInt("Codigo"),
+                    result.getString("Nombre"),
+                    result.getString("Telefono"));
+            Conexion.close(result);
+            Conexion.close(state);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
-        Cliente cliente = new Cliente(result.getInt("Codigo"),
-                result.getString("Nombre"),
-                result.getString("Telefono"));
-        Conexion.close(result);
-        Conexion.close(state);
-
-        return cliente;
+        return Cliente;
     }
 
     public void borrar(int Codigo) throws SQLException{

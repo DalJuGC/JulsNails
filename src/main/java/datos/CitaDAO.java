@@ -1,6 +1,7 @@
 package datos;
 
 import modelo.Cita;
+import modelo.Cliente;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class CitaDAO{
     public static final String insertSQL = "INSERT INTO Cita(Fecha, Horario, Cod_Cliente, Cod_Tratamiento, Cod_Promocion) VALUES (?,?,?,?,?)";
     public static final  String updateSQL = "UPDATE Cita_Disp SET Fecha = ?, Horario = ?, Cod_Cliente = ?, Cod_Tratamiento = ?, Cod_Promocion = ? WHERE Codigo = ? ";
     public static final String deleteSQL = "DELETE FROM Cita WHERE Codigo = ? ";
+    public static final String consultSQL = "SELECT * FROM Cita WHERE Codigo = ?";
 
     public List<Cita> seleccionar() throws SQLException{
         Connection conn = null;
@@ -224,6 +226,31 @@ public class CitaDAO{
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Cita buscar(int Codigo) throws SQLException{
+
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+        Cita Cita = null;
+        try{
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(consultSQL);
+
+            Cita cita = new Cita(result.getInt("Codigo"),
+                    result.getString("Fecha"),
+                    result.getString("Horario"),
+                    result.getString("Cod_Cliente"),
+                    result.getString("Cod_Tratamiento"),
+                    result.getString("Cod_Promocion"));
+            Conexion.close(result);
+            Conexion.close(state);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return Cita;
     }
 
     public void borrar(int Codigo) throws SQLDataException{
