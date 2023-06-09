@@ -1,20 +1,19 @@
-package controlador.Cliente;
+package controlador.Empleado;
 
-import datos.ClienteDAO;
+import datos.EmpleadoDAO;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletRequest;
+import javax.annotation.Resource;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-
-import java.sql.SQLException;
-import java.sql.Connection;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-@WebServlet(name = "SVBrCliente", urlPatterns = {"/SVBrCliente"})
-public class SVBrCliente extends HttpServlet {
+@WebServlet(name = "SVBrEmpleado", urlPatterns = {"/SVBrEmpleado"})
+public class SVBrEmpleado extends HttpServlet {
     @Resource(name = "jdbc/database")
     private DataSource conexion;
 
@@ -25,12 +24,12 @@ public class SVBrCliente extends HttpServlet {
         Codigo = Integer.parseInt(rq.getParameter("Codigo"));
         try{
             Connection connection = conexion.getConnection();
-            ClienteDAO cliDAO = new ClienteDAO();
-            cliDAO.borrar(Codigo);
+            EmpleadoDAO empDAO = new EmpleadoDAO();
+            empDAO.borrar(Codigo);
             connection.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
-        rs.sendRedirect("/ProyectoDAW/Cliente/ListaCliente.jsp");
+        rs.sendRedirect("/ProyectoDAW/Empleado/ListaEmp.jsp");
     }
 }

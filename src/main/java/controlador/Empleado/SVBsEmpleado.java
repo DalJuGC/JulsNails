@@ -13,7 +13,6 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "SVBsEmpleado", urlPatterns = {"/SVBsEmpleado"})
 public class SVBsEmpleado extends HttpServlet {
@@ -29,9 +28,20 @@ public class SVBsEmpleado extends HttpServlet {
             Connection connection = conexion.getConnection();
             EmpleadoDAO empDAO = new EmpleadoDAO();
             Empleado emp = empDAO.buscar(Codigo);
-            List<Empleado> empleado =empDAO.listar(Codigo);
+            if(emp != null){
+                rq.getSession().setAttribute("Codigo", emp.getCodigo());
+                rq.getSession().setAttribute("Encontrado", true);
+            }else{
+                rq.getSession().setAttribute("Codigo", null);
+                rq.getSession().setAttribute("Encontrado", false);
+            }
+            rq.getSession().setAttribute("Codigo", null);
+            rq.getSession().setAttribute("datos", emp);
+
+            connection.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
+        rs.sendRedirect("/ProyectoDAW/Empleado/ListaEmp.jsp");
     }
 }
