@@ -11,7 +11,7 @@ public class TratamientoDAO{
     public static final  String updateSQL = "UPDATE Tratamiento SET Nombre = ?, Precio = ?, Cod_Manicurista = ? WHERE Codigo = ? ";
     public static final String deleteSQL = "DELETE FROM Tratamiento WHERE Codigo = ? ";
 
-    public List<Tratamiento> listar(){
+    public List<Tratamiento> seleccionar(){
         Connection conn = null;
         Statement state = null;
         ResultSet result = null;

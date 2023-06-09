@@ -1,7 +1,7 @@
-package controlador.Empleado;
+package controlador.Tratamiento;
 
-import datos.EmpleadoDAO;
-import modelo.Empleado;
+import datos.TratamientoDAO;
+import modelo.Tratamiento;
 
 import javax.annotation.Resource;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +15,8 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.List;
 
-@WebServlet(name = "SVLEmpleado", urlPatterns = {"/SVLEmpleado"})
-public class SVLEmpleado extends HttpServlet {
+@WebServlet(name = "SVLTratamiento", urlPatterns = {"/SVLTratamiento"})
+public class SVLTratamiento extends HttpServlet {
     @Resource(name = "jdbc/database")
     private DataSource conexion;
 
@@ -24,13 +24,13 @@ public class SVLEmpleado extends HttpServlet {
     public void doGet(HttpServletRequest rq, HttpServletResponse rs) throws IOException{
         try{
             Connection connectioon = conexion.getConnection();
-            EmpleadoDAO empDAO = new EmpleadoDAO();
-            List<Empleado> lista = empDAO.seleccionar();
+            TratamientoDAO traDAO = new TratamientoDAO();
+            List<Tratamiento> lista = traDAO.seleccionar();
             rq.getSession().setAttribute("lista", lista);
             connectioon.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
-        rs.sendRedirect("/ProyectoDAW/Empleado/ListaEmp.jsp");
+        rs.sendRedirect("/ProyectoDAW/Empleado/ListaTra.jsp");
     }
 }
