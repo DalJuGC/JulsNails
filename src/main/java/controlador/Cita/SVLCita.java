@@ -3,10 +3,11 @@ package controlador.Cita;
 import datos.CitaDAO;
 import modelo.Cita;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.annotation.Resource;
-import javax.servlet.annotation.*;
-import javax.servlet.http.*;
-import javax.servlet.*;
 import javax.sql.DataSource;
 
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ public class SVLCita extends HttpServlet {
     private DataSource conexion;
 
     @Override
-    protected void doGet(HttpServletRequest rq, HttpServletResponse rs) throws IOException, ServletException{
+    protected void doGet(HttpServletRequest rq, HttpServletResponse rs) throws IOException{
         try{
             Connection connection = conexion.getConnection();
             CitaDAO citaDAO = new CitaDAO();
@@ -30,7 +31,7 @@ public class SVLCita extends HttpServlet {
         }catch(SQLException e){
             e.printStackTrace();
         }
-        rs.sendRedirect("/ProyectoDAW/Cita/SVLCita.jsp");
+        rs.sendRedirect("/ProyectoDAW/Cita/ListaCita.jsp");
     }
 
 }

@@ -26,8 +26,8 @@ public class PromocionDAO{
             while(result.next()){
                 int Codigo = result.getInt("Codigo");
                 String Nombre = result.getString("Nombre");
-                Float Precio = result.getFloat("Precio");
-                Boolean Vigencia = result.getBoolean("Vigencia");
+                String Precio = result.getString("Precio");
+                String Vigencia = result.getString("Vigencia");
                 
                 Prom = new Promocion(Codigo, Nombre, Precio, Vigencia);
                 Promociones.add(Prom);
@@ -62,8 +62,8 @@ public class PromocionDAO{
             state = conn.prepareStatement(insertSQL);
 
             state.setString(1,Promociones.getNombre());
-            state.setFloat(2,Promociones.getPrecio());
-            state.setBoolean(3, Promociones.getVigencia());
+            state.setString(2,Promociones.getPrecio());
+            state.setString(3, Promociones.getVigencia());
 
             registros = state.executeUpdate();
 

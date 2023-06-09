@@ -6,8 +6,8 @@ public class Promocion implements Serializable{
     private static final long serialVersionUID = 1L;
     private int Codigo;
     private String Nombre;
-    private Float Precio;
-    private Boolean Vigencia;
+    private String Precio;
+    private String Vigencia;
 
     public Promocion(){
     }
@@ -18,7 +18,7 @@ public class Promocion implements Serializable{
     }
     
     //Insertar
-    public Promocion(int Codigo, String Nombre, Float Precio, Boolean Vigencia){
+    public Promocion(int Codigo, String Nombre, String Precio, String Vigencia){
         this.Nombre = Nombre;
         this.Precio = Precio;
         this.Vigencia = Vigencia;
@@ -26,7 +26,7 @@ public class Promocion implements Serializable{
     }
 
     //Modificar
-    public Promocion(String Nombre, Float Precio, Boolean Vigencia){
+    public Promocion(String Nombre, String Precio, String Vigencia){
         this.Nombre = Nombre;
         this.Precio = Precio;
         this.Vigencia = Vigencia;
@@ -48,19 +48,19 @@ public class Promocion implements Serializable{
         this.Nombre = Nombre;
     }
 
-    public Float getPrecio() {
+    public String getPrecio() {
         return Precio;
     }
 
-    public void setPrecio(Float Precio) {
+    public void setPrecio(String Precio) {
         this.Precio = Precio;
     }
 
-    public Boolean getVigencia() {
+    public String getVigencia() {
         return Vigencia;
     }
 
-    public void setVigencia(Boolean Vigencia) {
+    public void setVigencia(String Vigencia) {
         this.Vigencia = Vigencia;
     }
 }
