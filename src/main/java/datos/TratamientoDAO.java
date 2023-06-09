@@ -3,6 +3,8 @@ package datos;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import modelo.Empleado;
 import modelo.Tratamiento;
 
 public class TratamientoDAO{
@@ -10,6 +12,7 @@ public class TratamientoDAO{
     public static final String insertSQL = "INSERT INTO Tratamiento(Nombre, Precio, Cod_Manicurista) VALUES (?,?,?)";
     public static final  String updateSQL = "UPDATE Tratamiento SET Nombre = ?, Precio = ?, Cod_Manicurista = ? WHERE Codigo = ? ";
     public static final String deleteSQL = "DELETE FROM Tratamiento WHERE Codigo = ? ";
+    public static final String consultSQL = "SELECT * FROM Tratamiento WHERE Codigo = ?";
 
     public List<Tratamiento> seleccionar(){
         Connection conn = null;
@@ -129,6 +132,24 @@ public class TratamientoDAO{
         }catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Tratamiento buscar(int Codigo) throws SQLException{
+
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+
+        conn = Conexion.getConnection();
+        state = conn.prepareStatement(consultSQL);
+
+        Tratamiento tratamiento = new Tratamiento(result.getInt("Codigo"),
+                result.getString("Nombre"),
+                result.getString("Precio"));
+        Conexion.close(result);
+        Conexion.close(state);
+
+        return tratamiento;
     }
 
     public void borrar(Tratamiento tratamientos){
