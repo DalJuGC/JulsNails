@@ -10,7 +10,7 @@ import java.util.List;
 public class CitaDAO{
     public static final String selectSQL = "SELECT * FROM Cita";
     public static final String insertSQL = "INSERT INTO Cita(Fecha, Horario, Cod_Cliente, Cod_Tratamiento, Cod_Promocion) VALUES (?,?,?,?,?)";
-    public static final  String updateSQL = "UPDATE Cita_Disp SET Fecha = ?, Horario = ?, Cod_Cliente = ?, Cod_Tratamiento = ?, Cod_Promocion = ? WHERE Codigo = ? ";
+    public static final  String updateSQL = "UPDATE Cita SET Fecha = ?, Horario = ?, Cod_Cliente = ?, Cod_Tratamiento = ?, Cod_Promocion = ? WHERE Codigo = ? ";
     public static final String deleteSQL = "DELETE FROM Cita WHERE Codigo = ? ";
     public static final String consultSQL = "SELECT * FROM Cita WHERE Codigo = ?";
 

@@ -13,7 +13,7 @@ public class EmpleadoDAO {
     public static final String insertSQL = "INSERT INTO Empleado(Nombre, Cargo, Telefono, Domicilio, Fech_Con) VALUES (?,?,?,?,?)";
     public static final String updateSQL = "UPDATE Empleado SET Nombre = ?, Cargo = ?, Telefono = ?, Domicilio = ?, Fech_Con = ?";
     public static final String deleteSQL = "DELETE FROM Empleado WHERE Codigo = ?";
-    public static final String consultSQL = "SELECT * FROM Cliente WHERE Codigo = ?";
+    public static final String consultSQL = "SELECT * FROM Empleado WHERE Codigo = ?";
 
     //Muestra los clientes
 

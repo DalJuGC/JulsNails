@@ -3,13 +3,16 @@ package datos;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import modelo.Empleado;
 import modelo.Promocion;
 
 public class PromocionDAO{
     public static final String selectSQL = "SELECT * FROM Promocio";
     public static final String insertSQL = "INSERT INTO Promocion(Nombre, Precio, Vigencia) VALUES (?,?,?)";
     public static final  String updateSQL = "UPDATE Promocion SET Nombre = ?, Precio = ?, Vigencia = ? WHERE Codigo = ? ";
-    public static final String deleteSQL = "DELETE FROM Tratamiento WHERE Codigo = ? ";
+    public static final String deleteSQL = "DELETE FROM Promocion WHERE Codigo = ? ";
+    public static final String consultSQL = "SELECT * FROM Promocion WHERE Codigo = ?";
 
     public List<Promocion> listar(){
         Connection conn = null;
@@ -160,6 +163,25 @@ public class PromocionDAO{
         }catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Promocion buscar(int Codigo) throws SQLException{
+
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+
+        conn = Conexion.getConnection();
+        state = conn.prepareStatement(consultSQL);
+
+        Promocion promocion = new Promocion(result.getInt("Codigo"),
+                result.getString("Nombre"),
+                result.getString("Precio"),
+                result.getString("Vigencia"));
+        Conexion.close(result);
+        Conexion.close(state);
+
+        return promocion;
     }
 
     public void borrar(Promocion Promociones){
