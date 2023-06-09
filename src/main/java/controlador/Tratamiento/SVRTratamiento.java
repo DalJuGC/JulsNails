@@ -1,7 +1,7 @@
-package controlador.Empleado;
+package controlador.Tratamiento;
 
-import modelo.Empleado;
-import datos.EmpleadoDAO;
+import datos.TratamientoDAO;
+import modelo.Tratamiento;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -14,34 +14,28 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.io.IOException;
 
-@WebServlet(name = "SVREmpleado", urlPatterns = {"/SVREmpleado"})
-public class SVREmpleado extends HttpServlet {
+@WebServlet(name = "SVRTratamiento", urlPatterns = {"/SVRTratamiento"})
+public class SVRTratamiento extends HttpServlet {
     @Resource(name = "jdbc/database")
     private DataSource conexion;
 
     private String Nombre;
-    private String Cargo;
-    private String Telefono;
-    private String Domicilio;
-    private String Fech_Con;
+    private String Precio;
 
     @Override
     protected  void doPost(HttpServletRequest rq, HttpServletResponse rs) throws IOException{
         Nombre = rq.getParameter("Nombre");
-        Cargo = rq.getParameter("Cargo");
-        Telefono = rq.getParameter("Telefono");
-        Domicilio = rq.getParameter("Domicilio");
-        Fech_Con = rq.getParameter("Fech_Con");
+        Precio = rq.getParameter("Precio");
 
         try{
             Connection connection = conexion.getConnection();
-            EmpleadoDAO empDAO = new EmpleadoDAO();
-            Empleado emp = new Empleado(Nombre, Cargo, Telefono, Domicilio, Fech_Con);
-            empDAO.insertar(emp);
+            TratamientoDAO traDAO = new TratamientoDAO();
+            Tratamiento tra = new Tratamiento(Nombre, Precio);
+            traDAO.insertar(tra);
             connection.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
-        rs.sendRedirect("/Proyecto/Empleado/RegistrarEmp.jsp");
+        rs.sendRedirect("/Proyecto/Empleado/RegistrarTra.jsp");
     }
 }

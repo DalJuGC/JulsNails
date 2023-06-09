@@ -5,7 +5,7 @@ public class Tratamiento implements Serializable{
     private static final long serialVersionUID = 1L;
     private int Codigo;
     private String Nombre;
-    private Float Precio;
+    private String Precio;
 
     public Tratamiento(){
     }
@@ -16,13 +16,13 @@ public class Tratamiento implements Serializable{
     }
 
     //Insertar
-    public Tratamiento(String Nombre, Float Precio){
+    public Tratamiento(String Nombre, String Precio){
         this.Nombre = Nombre;
         this.Precio = Precio;
     }
 
     //Modificar
-    public Tratamiento(int Codigo, String Nombre, Float Precio){
+    public Tratamiento(int Codigo, String Nombre, String Precio){
         this.Codigo = Codigo;
         this.Nombre = Nombre;
         this.Precio = Precio;
@@ -44,11 +44,11 @@ public class Tratamiento implements Serializable{
         this.Nombre = String.valueOf(Nombre);
     }
 
-    public Float getPrecio() {
+    public String getPrecio() {
         return Precio;
     }
 
-    public void setPrecio(Float Precio) {
+    public void setPrecio(String Precio) {
         this.Precio = Precio;
     }
 }

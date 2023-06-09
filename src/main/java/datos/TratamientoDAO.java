@@ -26,7 +26,7 @@ public class TratamientoDAO{
             while(result.next()){
                 int Codigo = result.getInt("Codigo");
                 String Nombre = result.getString("Nombre");
-                Float Precio = result.getFloat("Precio");
+                String Precio = result.getString("Precio");
                 
                 Trat = new Tratamiento(Codigo, Nombre, Precio);
                 Tratamientos.add(Trat);
@@ -60,7 +60,7 @@ public class TratamientoDAO{
             state = conn.prepareStatement(insertSQL);
 
             state.setString(1,tratamiento.getNombre());
-            state.setFloat(2,tratamiento.getPrecio());
+            state.setString(2,tratamiento.getPrecio());
 
             registros = state.executeUpdate();
 
@@ -103,7 +103,7 @@ public class TratamientoDAO{
         }
     }
 
-    public void modificarPrecio(int Codigo, Float Precio){
+    public void modificarPrecio(int Codigo, String Precio){
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -114,7 +114,7 @@ public class TratamientoDAO{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(updateSQL);
 
-            state.setFloat(1,Precio);
+            state.setString(1,Precio);
             state.setInt(2,Codigo);
 
             registros = state.executeUpdate();
