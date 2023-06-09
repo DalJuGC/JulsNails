@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="modelo.Cita"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="datos.CitaDAO"%>
 
 <html>
 <head>
@@ -38,19 +37,31 @@
                 <th>Tratamiento</th>
                 <th>Promoción</th>
             </tr>
-            <c:forEach items="${Cita}" var="c">
-                <tr>
-                    <td>${c.getCocido}</td>
-                    <td>${c.Cod_Cliente}</td>
-                    <td>${c.Fecha}</td>
-                    <td>${c.Horario}</td>
-                    <td>${c.Cod_Tratamiento}</td>
-                    <td>${c.Cod_Promocion}</td>
-                </tr>
-            </c:forEach>
             </thead>
+            <tbody>
+            <%
+                ArrayList<Cita> seleccionar = (ArrayList)session.getAttribute("datos");
+                if(seleccionar != null){
+                    for(Cita cita : seleccionar){
+            %>
+            <tr>
+                <td><%out.print(cita.getCodigo()); %></td>
+                <td><%out.print(cita.getCod_Cliente()); %></td>
+                <td><%out.print(cita.getFecha()); %></td>
+                <td><%out.print(cita.getHorario()); %></td>
+                <td><%out.print(cita.getCod_Tratamiento()); %></td>
+                <td><%out.print(cita.getCod_Promocion()); %></td>
+            </tr>
+            <%
+                    }
+                }
+                else{
+                    response.sendRedirect("/ProyectoDAW/SVLPromocion");
+                }
+                session.removeAttribute("datos");
+            %>
+            </tbody>
         </table>
-
     </div>
 </main>
 </body>

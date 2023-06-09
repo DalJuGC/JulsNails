@@ -26,7 +26,7 @@ public class SVBsEmpleado extends HttpServlet {
         Codigo = Integer.parseInt(rq.getParameter("Codigo"));
         try{
             Connection connection = conexion.getConnection();
-            EmpleadoDAO empDAO = new EmpleadoDAO();
+            EmpleadoDAO empDAO = new EmpleadoDAO(connection);
             Empleado emp = empDAO.buscar(Codigo);
             if(emp != null){
                 rq.getSession().setAttribute("Codigo", emp.getCodigo());

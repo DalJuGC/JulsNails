@@ -9,6 +9,7 @@
                 <li><a href="/ProyectoDAW/Cita/ListaCita.jsp">Citas</a></li>
                 <li><a href="/ProyectoDAW/Tratamiento/ListaTra.jsp">Tratamientos</a></li>
                 <li><a href="/ProyectoDAW/Promocion/ListaProm.jsp">Promociones</a></li>
+                <li><a href="/ProyectoDAW/Empleado/ListaEmp.jsp">Empleados</a></li>
             </ul>
         </nav>
     </header>

@@ -19,12 +19,13 @@ import java.util.ArrayList;
 public class SVLCliente extends HttpServlet {
     @Resource(name = "jdbc/database")
     private DataSource conexion;
+    
     @Override
     public void doGet(HttpServletRequest rq, HttpServletResponse rs) throws IOException{
         try{
             Connection connection = conexion.getConnection();
             ClienteDAO cliDAO = new ClienteDAO(connection);
-            rq.getSession().setAttribute("datos", cliDAO.seleccionar());
+            rq.getSession().setAttribute("datos", cliDAO.listar());
             connection.close();
         }catch (SQLException e){
             rq.getSession().setAttribute("datos", new ArrayList<Cliente>());

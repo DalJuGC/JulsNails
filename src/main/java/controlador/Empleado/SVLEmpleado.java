@@ -3,17 +3,17 @@ package controlador.Empleado;
 import datos.EmpleadoDAO;
 import modelo.Empleado;
 
-import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Connection;
-import java.util.List;
+import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "SVLEmpleado", urlPatterns = {"/SVLEmpleado"})
 public class SVLEmpleado extends HttpServlet {
@@ -23,12 +23,12 @@ public class SVLEmpleado extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest rq, HttpServletResponse rs) throws IOException{
         try{
-            Connection connectioon = conexion.getConnection();
-            EmpleadoDAO empDAO = new EmpleadoDAO();
-            List<Empleado> lista = empDAO.seleccionar();
-            rq.getSession().setAttribute("lista", lista);
-            connectioon.close();
+            Connection connection = conexion.getConnection();
+            EmpleadoDAO empDAO = new EmpleadoDAO(connection);
+            rq.getSession().setAttribute("datos", empDAO.seleccionar());
+            connection.close();
         }catch (SQLException e){
+            rq.getSession().setAttribute("datos", new ArrayList<Empleado>());
             e.printStackTrace();
         }
         rs.sendRedirect("/ProyectoDAW/Empleado/ListaEmp.jsp");

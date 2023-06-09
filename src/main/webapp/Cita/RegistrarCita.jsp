@@ -12,17 +12,18 @@
         <header>
             <nav>
                 <ul>
-                <li><a href="/ProyectoDAW/index.jsp">Inicio</a></li>
-                <li><a href="/ProyectoDAW/Cita/ListaCita.jsp">Citas</a></li>
-                <li><a href="/ProyectoDAW/Tratamiento/ListaTra.jsp">Tratamientos</a></li>
-                <li><a href="/ProyectoDAW/Promocion/ListaProm.jsp">Promociones</a></li>
-                </li>
+                    <li><a href="/ProyectoDAW/index.jsp">Inicio</a></li>
+                    <li><a href="/ProyectoDAW/Cliente/ListaCliente.jsp">Clientes</a></li>
+                    <li><a href="/ProyectoDAW/Cita/ListaCita.jsp">Citas</a></li>
+                    <li><a href="/ProyectoDAW/Tratamiento/ListaTra.jsp">Tratamientos</a></li>
+                    <li><a href="/ProyectoDAW/Promocion/ListaProm.jsp">Promociones</a></li>
+                    <li><a href="/ProyectoDAW/Empleado/ListaEmp.jsp">Empleados</a></li>
                 </ul>
             </nav>
         </header>
         <main>
             <div>
-                <form method="post" action="/ProyectoDAW/SVRCita.java">
+                <form method="post" action="/ProyectoDAW/SVRCita">
                     <p>Cliente <input type="text" name="Nombre"></p>
                     <p>Fecha <input type="date" name="Fecha"></p>
                     <p>Horario <input type="time" name="Horario"></p>

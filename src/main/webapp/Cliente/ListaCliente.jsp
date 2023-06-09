@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="modelo.Cliente"%>
 <%@ page import="java.util.ArrayList" %>
+<html>
 <head>
     <title>Clientes</title>
     <link rel="stylesheet" type="text/css" href="/ProyectoDAW/Estilos/Tabla.css">
@@ -20,7 +21,15 @@
 </header>
 <main>
     <div>
-        <h1>Cliente</h1>
+        <h1>Clientes</h1>
+        <div>
+            <form method="post" action="SVBsCliente">
+                <fieldset>
+                    <input type="number" name="Codigo" placeholder="Buscar"/>
+                    <input type="submit" value="Buscar"/>
+                </fieldset>
+            </form>
+        </div>
         <button onclick="location.href='/ProyectoDAW/Cliente/RegistrarCliente.jsp'">Registrar cliente</button>
         <button onclick="location.href='/ProyectoDAW/Cliente/BuscarCliente.jsp'">Buscar cliente</button>
         <button onclick="location.href='/ProyectoDAW/Cliente/ModificarCliente.jsp'">Modificar cliente</button>

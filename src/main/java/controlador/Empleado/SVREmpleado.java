@@ -19,6 +19,7 @@ public class SVREmpleado extends HttpServlet {
     @Resource(name = "jdbc/database")
     private DataSource conexion;
 
+    private int Codigo;
     private String Nombre;
     private String Cargo;
     private String Telefono;
@@ -27,6 +28,7 @@ public class SVREmpleado extends HttpServlet {
 
     @Override
     protected  void doPost(HttpServletRequest rq, HttpServletResponse rs) throws IOException{
+        Codigo = Integer.parseInt(rq.getParameter("Codigo"));
         Nombre = rq.getParameter("Nombre");
         Cargo = rq.getParameter("Cargo");
         Telefono = rq.getParameter("Telefono");
@@ -35,8 +37,8 @@ public class SVREmpleado extends HttpServlet {
 
         try{
             Connection connection = conexion.getConnection();
-            EmpleadoDAO empDAO = new EmpleadoDAO();
-            Empleado emp = new Empleado(Nombre, Cargo, Telefono, Domicilio, Fech_Con);
+            EmpleadoDAO empDAO = new EmpleadoDAO(connection);
+            Empleado emp = new Empleado(Codigo, Nombre, Cargo, Telefono, Domicilio, Fech_Con);
             empDAO.insertar(emp);
             connection.close();
         }catch (SQLException e){

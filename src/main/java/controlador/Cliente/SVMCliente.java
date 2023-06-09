@@ -30,8 +30,9 @@ public class SVMCliente extends HttpServlet {
         try{
             Connection connection = conexion.getConnection();
             ClienteDAO cliDAO = new ClienteDAO(connection);
-            Cliente cli = new Cliente();
+            Cliente cli = new Cliente(Codigo);
             rq.getSession().setAttribute("datos", cli);
+            
             if(Nombre != null && Telefono != null){
                 cliDAO.modificarNom(Codigo, Nombre);
                 cliDAO.modificarTel(Codigo, Telefono);

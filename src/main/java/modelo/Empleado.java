@@ -80,4 +80,9 @@ public class Empleado implements Serializable{
     public void setFech_Con(String Fech_Con){
         this.Fech_Con = Fech_Con;
     }
+
+    @Override
+    public String toString(){
+        return "Empleado{" + "Codigo=" + Codigo + ",Nombre=" + Nombre + ",Cargo=" + Cargo + ",Telefono=" + Telefono + ",Domicilio=" + Domicilio + ",Fech_Con=" + Fech_Con + "}";
+    }
 }

@@ -25,7 +25,7 @@ public class SVBrEmpleado extends HttpServlet {
         Codigo = Integer.parseInt(rq.getParameter("Codigo"));
         try{
             Connection connection = conexion.getConnection();
-            EmpleadoDAO empDAO = new EmpleadoDAO();
+            EmpleadoDAO empDAO = new EmpleadoDAO(connection);
             empDAO.borrar(Codigo);
             connection.close();
         }catch (SQLException e){

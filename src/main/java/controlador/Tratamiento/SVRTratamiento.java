@@ -21,16 +21,18 @@ public class SVRTratamiento extends HttpServlet {
 
     private String Nombre;
     private String Precio;
+    private String Cod_Empleado;
 
     @Override
     protected  void doPost(HttpServletRequest rq, HttpServletResponse rs) throws IOException{
         Nombre = rq.getParameter("Nombre");
         Precio = rq.getParameter("Precio");
+        Cod_Empleado = rq.getParameter("Cod_Empleado");
 
         try{
             Connection connection = conexion.getConnection();
             TratamientoDAO traDAO = new TratamientoDAO();
-            Tratamiento tra = new Tratamiento(Nombre, Precio);
+            Tratamiento tra = new Tratamiento(Nombre, Precio, Cod_Empleado);
             traDAO.insertar(tra);
             connection.close();
         }catch (SQLException e){

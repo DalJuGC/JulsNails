@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="modelo.Empleado"%>
-<%@ page import="datos.EmpleadoDAO"%>
+<%@ page import="java.util.ArrayList"%>
 <html>
 <head>
     <title>Empleados</title>
@@ -31,8 +31,32 @@
         <th>Nombre</th>
         <th>Cargo</th>
         <th>Telefono</th>
+        <th>Domicilio</th>
+        <th>Fecha de nacimiento</th>
       </tr>
       </thead>
+      <tbody>
+      <%
+        ArrayList<Empleado> seleccionar = (ArrayList)session.getAttribute("datos");
+        if(seleccionar != null){
+          for(Empleado emp : seleccionar){
+      %>
+      <tr>
+        <td><%out.print(emp.getCodigo()); %></td>
+        <td><%out.print(emp.getNombre()); %></td>
+        <td><%out.print(emp.getTelefono()); %></td>
+        <td><%out.print(emp.getDomicilio()); %></td>
+        <td><%out.print(emp.getFech_Con()); %></td>
+      </tr>
+      <%
+          }
+        }
+        else{
+          response.sendRedirect("/ProyectoDAW/SVLEmpleado");
+        }
+        session.removeAttribute("datos");
+      %>
+      </tbody>
     </table>
   </div>
 </main>

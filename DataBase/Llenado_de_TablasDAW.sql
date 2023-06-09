@@ -7,8 +7,8 @@ VALUES ('1','Julissa','2851087745'),
 ('2','Nayubel','2855504439'),
 ('3','Liz','2294837497');
 
-INSERT INTO Empleado(codigo,nombre,cargo,telefono)
-VALUES ('1','Dania','Jefa','2851093286');
+INSERT INTO Empleado(codigo,nombre,cargo,telefono,domicilio, fech_con)
+VALUES ('1','Dania','Jefa','2851093286','Ignacio de la Llame','21/09/2022');
 
 INSERT INTO Tratamiento(codigo,nombre, precio,cod_empleado)
 VALUES('1','Uñas de acrilico','300','1'),

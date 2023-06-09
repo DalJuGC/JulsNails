@@ -4,26 +4,25 @@ import modelo.Cliente;
 import modelo.Empleado;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.sql.*;
-import java.util.concurrent.ExecutionException;
 
 public class EmpleadoDAO {
     public static final String selectSQL = "SELECT * FROM Empleado";
-    public static final String insertSQL = "INSERT INTO Empleado(Nombre, Cargo, Telefono, Domicilio, Fech_Con) VALUES (?,?,?,?,?)";
-    public static final String updateSQL = "UPDATE Empleado SET Nombre = ?, Cargo = ?, Telefono = ?, Domicilio = ?, Fech_Con = ?";
+    public static final String insertSQL = "INSERT INTO Empleado(Codigo, Nombre, Cargo, Telefono, Domicilio, Fech_Con) VALUES (?,?,?,?,?,?);";
+    public static final String updateSQL = "UPDATE Empleado SET Codigo = ?, Nombre = ?, Cargo = ?, Telefono = ?, Domicilio = ?, Fech_Con = ?";
     public static final String deleteSQL = "DELETE FROM Empleado WHERE Codigo = ?";
     public static final String consultSQL = "SELECT * FROM Empleado WHERE Codigo = ?";
 
-    //Muestra los clientes
+    private Connection connection;
 
-    public List<Empleado> seleccionar() throws SQLException{
+    public EmpleadoDAO(Connection connection){this.connection = connection;}
+    //Muestra los clientes
+    public ArrayList<Empleado> seleccionar() throws SQLException{
+        ArrayList<Empleado> lista = new ArrayList<>();
         Connection conn = null;
         Statement state = null;
         ResultSet result = null;
         Empleado emp = null;
-
-        List<Empleado> Empleado = new ArrayList<>();
         try{
             conn = Conexion.getConnection();
             state = conn.createStatement();
@@ -38,51 +37,30 @@ public class EmpleadoDAO {
                 String Fech_Con = result.getString("Fech_Con");
 
                 emp = new Empleado(Codigo, Nombre, Cargo, Telefono, Domicilio, Fech_Con);
-                Empleado.add(emp);
+                lista.add(emp);
             }
             Conexion.close(result);
             Conexion.close(state);
             Conexion.close(conn);
-
-            for(Empleado empleado: Empleado){
-                System.out.println("Codigo: "+ empleado.getCodigo());
-                System.out.println("Nombre: "+ empleado.getNombre());
-                System.out.println("Cargo: "+ empleado.getCargo());
-                System.out.print("Telefono: "+ empleado.getTelefono());
-                System.out.print("Domicilio: "+ empleado.getDomicilio());
-                System.out.print("Fech_Con "+ empleado.getFech_Con());
-                System.out.println(" \n ");
-            }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return Empleado;
+        return lista;
     }
 
     public void insertar(Empleado empleado) throws SQLException{
         Connection conn = null;
         PreparedStatement state = null;
-        int registros = 0;
 
-        try{
-            conn = Conexion.getConnection();
-            state = conn.prepareStatement(insertSQL);
+        conn = Conexion.getConnection();
+        state = conn.prepareStatement(insertSQL);
 
-            state.setString(1, empleado.getNombre());
-            state.setString(2, empleado.getCargo());
-            state.setString(3, empleado.getTelefono());
-            state.setString(4, empleado.getDomicilio());
-            state.setString(5, empleado.getFech_Con());
-
-            registros = state.executeUpdate();
-            if(registros>0)
-                System.out.println("Registro agregado correctamente");
-
-            Conexion.close(state);
-            Conexion.close(conn);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        state.setInt(1,empleado.getCodigo());
+        state.setString(2, empleado.getNombre());
+        state.setString(3, empleado.getCargo());
+        state.setString(4, empleado.getTelefono());
+        state.setString(5, empleado.getDomicilio());
+        state.setString(6, empleado.getFech_Con());
     }
 
     public void modificarNom(int Codigo, String Nombre) throws SQLException{

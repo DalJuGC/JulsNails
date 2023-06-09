@@ -36,7 +36,7 @@ public class SVMEmpleado extends HttpServlet {
         Fech_Con = rq.getParameter("Fech_Con");
         try{
             Connection connection = conexion.getConnection();
-            EmpleadoDAO empDAO = new EmpleadoDAO();
+            EmpleadoDAO empDAO = new EmpleadoDAO(connection);
             Empleado emp = new Empleado();
             rq.getSession().setAttribute("datos", emp);
             if(Nombre != null && Cargo != null && Telefono != null && Domicilio != null && Fech_Con != null){

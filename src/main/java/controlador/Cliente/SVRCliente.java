@@ -20,18 +20,20 @@ public class SVRCliente extends HttpServlet {
     @Resource(name = "jdbc/database")
     private DataSource conexion;
 
+    private int Codigo;
     private String Nombre;
     private String Telefono;
 
     @Override
     protected void doPost(HttpServletRequest rq, HttpServletResponse rs) throws IOException{
+        Codigo = Integer.parseInt(rq.getParameter("Codigo"));
         Nombre = rq.getParameter("Nombre");
         Telefono = rq.getParameter("Telefono");
 
         try{
             Connection connection = conexion.getConnection();
             ClienteDAO cliDAO = new ClienteDAO(connection);
-            Cliente cli = new Cliente(Nombre, Telefono);
+            Cliente cli = new Cliente(Codigo, Nombre, Telefono);
             cliDAO.insertar(cli);
             connection.close();
         } catch (SQLException e){

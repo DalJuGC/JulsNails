@@ -1,12 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Julit
-  Date: 04/06/2023
-  Time: 06:36 p. m.
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ page import="modelo.Promocion"%>
+<%@ page import="java.util.ArrayList" %>
 <html>
 <head>
     <title>Citas registradas</title>
@@ -16,9 +10,11 @@
     <nav>
         <ul>
             <li><a href="/ProyectoDAW/index.jsp">Inicio</a></li>
+            <li><a href="/ProyectoDAW/Cliente/ListaCliente.jsp">Clientes</a></li>
             <li><a href="/ProyectoDAW/Cita/ListaCita.jsp">Citas</a></li>
             <li><a href="/ProyectoDAW/Tratamiento/ListaTra.jsp">Tratamientos</a></li>
             <li><a href="/ProyectoDAW/Promocion/ListaProm.jsp">Promociones</a></li>
+            <li><a href="/ProyectoDAW/Empleado/ListaEmp.jsp">Empleados</a></li>
         </ul>
     </nav>
 </header>
@@ -37,10 +33,29 @@
                 <th>Vigencia</th>
             </tr>
             </thead>
+            <tbody>
+            <%
+                ArrayList<Promocion> seleccionar = (ArrayList)session.getAttribute("datos");
+                if(seleccionar != null){
+                    for(Promocion prom : seleccionar){
+            %>
+            <tr>
+                <td><%out.print(prom.getCodigo()); %></td>
+                <td><%out.print(prom.getNombre()); %></td>
+                <td><%out.print(prom.getPrecio()); %></td>
+                <td><%out.print(prom.getVigencia()); %></td>
+            </tr>
+            <%
+                    }
+                }
+                else{
+                    response.sendRedirect("/ProyectoDAW/SVLPromocion");
+                }
+                session.removeAttribute("datos");
+            %>
+            </tbody>
         </table>
     </div>
 </main>
-
 </body>
-
 </html>

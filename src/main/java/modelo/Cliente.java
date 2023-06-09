@@ -3,27 +3,21 @@ package modelo;
 import java.io.Serializable;
 
 public class Cliente implements Serializable{
-    private static final long serialVersionUID = 1L;
     private int Codigo;
     private String Nombre;
     private String Telefono;
 
     public Cliente(){
     }
-
-    public Cliente(int Codigo){
-        this.Codigo = Codigo;
-    }
-
-    public Cliente(String Nombre, String Telefono){
-        this.Nombre = Nombre;
-        this.Telefono = Telefono;
-    }
-
+    
     public Cliente(int Codigo, String Nombre, String Telefono){
         this.Codigo = Codigo;
         this.Nombre = Nombre;
         this.Telefono = Telefono;
+    }
+
+    public Cliente(int codigo) {
+        this.Codigo = Codigo;
     }
 
     public int getCodigo() {

@@ -30,8 +30,9 @@ public class TratamientoDAO{
                 int Codigo = result.getInt("Codigo");
                 String Nombre = result.getString("Nombre");
                 String Precio = result.getString("Precio");
+                String Cod_Empleado =result.getString("Cod_Empleado");
                 
-                Trat = new Tratamiento(Codigo, Nombre, Precio);
+                Trat = new Tratamiento(Codigo, Nombre, Precio, Cod_Empleado);
                 Tratamientos.add(Trat);
             }
 
@@ -145,7 +146,8 @@ public class TratamientoDAO{
 
         Tratamiento tratamiento = new Tratamiento(result.getInt("Codigo"),
                 result.getString("Nombre"),
-                result.getString("Precio"));
+                result.getString("Precio"),
+                result.getString("Cod_Empleado"));
         Conexion.close(result);
         Conexion.close(state);
 
