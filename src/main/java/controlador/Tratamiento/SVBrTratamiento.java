@@ -1,7 +1,6 @@
 package controlador.Tratamiento;
 
 import datos.TratamientoDAO;
-import modelo.Tratamiento;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -14,32 +13,24 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.io.IOException;
 
-@WebServlet(name = "SVMTratamiento", urlPatterns = {"/SVMTratamiento"})
-public class SVMTratamiento extends HttpServlet {
+@WebServlet(name = "SVBrTratamiento", urlPatterns = {"/SVBrTratamiento"})
+public class SVBrTratamiento extends HttpServlet {
     @Resource(name = "jdbc/database")
     private DataSource conexion;
 
     private int Codigo;
-    private String Nombre;
-    private String Precio;
 
     @Override
     protected void doPost(HttpServletRequest rq, HttpServletResponse rs) throws IOException{
-        Codigo = (int)rq.getSession().getAttribute("Codigo");
-        Nombre = rq.getParameter("Nombre");
-        Precio = rq.getParameter("Precio");
+        Codigo = Integer.parseInt(rq.getParameter("Codigo"));
         try{
             Connection connection = conexion.getConnection();
             TratamientoDAO traDAO = new TratamientoDAO();
-            Tratamiento tra = new Tratamiento();
-            rq.getSession().setAttribute("datos", tra);
-            if(Nombre != null && Precio != null ){
-                traDAO.modificarNombre(Codigo, Nombre);
-                traDAO.modificarPrecio(Codigo, Precio);
-            }
+            traDAO.borrar(Codigo);
+            connection.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
-        rs.sendRedirect("/ProyectoDAW/Tratamiento/ModificarEmp.jsp");
+        rs.sendRedirect("/ProyectoDAW/Tratamiento/ListaTra.jsp");
     }
 }

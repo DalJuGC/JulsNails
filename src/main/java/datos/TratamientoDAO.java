@@ -152,7 +152,7 @@ public class TratamientoDAO{
         return tratamiento;
     }
 
-    public void borrar(Tratamiento tratamientos){
+    public void borrar(int Codigo){
 
         Connection conn = null;
         PreparedStatement state = null;
@@ -162,7 +162,7 @@ public class TratamientoDAO{
             conn = Conexion.getConnection();
             state = conn.prepareStatement(deleteSQL);
 
-            state.setInt(1,tratamientos.getCodigo());
+            state.setInt(1,Codigo);
 
             registros = state.executeUpdate();
 

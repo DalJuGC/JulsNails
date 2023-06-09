@@ -44,6 +44,6 @@ public class SVBsPromocion extends HttpServlet {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        rs.sendRedirect("/ProyectoDAW/Empleado/ListaProm.jsp");
+        rs.sendRedirect("/ProyectoDAW/Promocion/ListaProm.jsp");
     }
 }

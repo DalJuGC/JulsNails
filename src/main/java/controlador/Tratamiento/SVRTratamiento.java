@@ -36,6 +36,6 @@ public class SVRTratamiento extends HttpServlet {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        rs.sendRedirect("/Proyecto/Empleado/RegistrarTra.jsp");
+        rs.sendRedirect("/Proyecto/Tratamiento/RegistrarTra.jsp");
     }
 }

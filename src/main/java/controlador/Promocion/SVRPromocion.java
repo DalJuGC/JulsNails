@@ -37,6 +37,6 @@ public class SVRPromocion extends HttpServlet {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        rs.sendRedirect("/Proyecto/Empleado/RegistrarEmp.jsp");
+        rs.sendRedirect("/Proyecto/Promocion/RegistrarProm.jsp");
     }
 }

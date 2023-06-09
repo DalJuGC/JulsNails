@@ -31,6 +31,6 @@ public class SVLTratamiento extends HttpServlet {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        rs.sendRedirect("/ProyectoDAW/Empleado/ListaTra.jsp");
+        rs.sendRedirect("/ProyectoDAW/Tratamiento/ListaTra.jsp");
     }
 }
