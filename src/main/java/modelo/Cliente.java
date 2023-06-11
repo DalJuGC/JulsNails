@@ -8,7 +8,7 @@ public class Cliente implements Serializable {
     private String telefono;
     private String domicilio;
 
-    public Cliente(){
+    public Cliente() {
 
     }
 
@@ -18,6 +18,10 @@ public class Cliente implements Serializable {
         this.nombre = nombre;
         this.telefono = telefono;
         this.domicilio = domicilio;
+    }
+
+    public Cliente(String nombre) {
+        this.nombre = nombre;
     }
 
     // Getters y Setters

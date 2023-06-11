@@ -2,279 +2,155 @@ package datos;
 
 import modelo.Cita;
 import modelo.Cliente;
+import modelo.Tratamiento;
+import modelo.Promocion;
 
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 
-public class CitaDAO{
-    public static final String selectSQL = "SELECT * FROM Cita";
-    public static final String insertSQL = "INSERT INTO Cita(Fecha, Horario, Cod_Cliente, Cod_Tratamiento, Cod_Promocion) VALUES (?,?,?,?,?)";
-    public static final  String updateSQL = "UPDATE Cita SET Fecha = ?, Horario = ?, Cod_Cliente = ?, Cod_Tratamiento = ?, Cod_Promocion = ? WHERE Codigo = ? ";
-    public static final String deleteSQL = "DELETE FROM Cita WHERE Codigo = ? ";
-    public static final String consultSQL = "SELECT * FROM Cita WHERE Codigo = ?";
+public class CitaDAO {
+    public static final String selectSQL = "SELECT Cita.codigo, Cliente.nombre AS cliente, Cita.fecha, Cita.horario, Tratamiento.nombre AS tratamiento, Promocion.nombre AS promocion, Cita.cancelar FROM Cita" +
+    "JOIN Tratamiento ON Cita.codigo = Tratamiento.codigo\n" +
+    "JOIN Cliente ON Cita.codigo = Cliente.codigo\n" +
+    "JOIN Promocion ON Cita.codigo = Promocion.codigo\n" +
+    "ORDER BY Cita.fecha, Cita.horario";
+    public static final String insertSQL = "INSERT INTO Cita(codigo, cod_cliente, fecha, horario, cod_tratamiento, cod_promocion, cancelar) VALUES (?,?,?,?,?,?,?)";
+    public static final String updateSQL = "UPDATE Cita SET fecha = ?, horario = ?, cod_tratamiento = ?, cod_promocion = ? WHERE codigo = ?";
+    public static final String deleteSQL = "UPDATE Cita SET cancelar = true WHERE codigo = ? ";
 
-    public List<Cita> seleccionar() throws SQLException{
-        Connection conn = null;
-        Statement state = null;
-        ResultSet result = null;
-        Cita Cit = null;
 
-        List<Cita> Citas = new ArrayList<>();
-        try{
-            conn = Conexion.getConnection();
-            state = conn.createStatement();
-            result = state.executeQuery(selectSQL);
 
-            while(result.next()){
-                int Codigo = result.getInt("Codigo");
-                String Fecha = result.getString("Fecha");
-                String Horario = result.getString("Horario");
-                String Cod_Cliente = result.getString("Cod_Cliente");
-                String Cod_Tratamiento = result.getString("Cod_Tratamiento");
-                String Cod_Promocion = result.getString("Cod_Promocion");
-                Cit = new Cita(Codigo, Fecha, Horario, Cod_Cliente, Cod_Tratamiento, Cod_Promocion);
-                Citas.add(Cit);
+    private Connection connection;
+    private PreparedStatement state;
+    private ResultSet result;
+    private Cliente cliente;
+    private Tratamiento tratamiento;
+    private Promocion promocion;
+    private  Cita cita;
+
+
+    public CitaDAO(Connection connection) {
+        this.connection = connection;
+    }
+
+    //Lista las citas registrados
+    public List<Cita> listar() {
+        List<Cita> cit =  new ArrayList<>();
+
+        try {
+            connection = Conexion.getConnection();
+            state = connection.prepareStatement(selectSQL);
+            result = state.executeQuery();
+
+            while (result.next()) {
+                int codigo = result.getInt("codigo");
+                String nombre = result.getString("nombre");
+                cliente = new Cliente(nombre);
+
+                //nombre = result.getString("nombre");
+               tratamiento = new Tratamiento(nombre);
+
+                //nombre = result.getString("nombre");
+                promocion = new Promocion(nombre);
+
+                Date fecha = result.getDate("fecha");
+                Time horario = result.getTime("horario");
+                Boolean cancelar = result.getBoolean("cancelar");
+                cita = new Cita(codigo, fecha, horario, cancelar);
+                cit.add(cita);
             }
 
-            Conexion.close(result);
-            Conexion.close((ResultSet) state);
-            Conexion.close(conn);
+            //connection.close();
+            state.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cit;
+    }
 
-            for(Cita citas: Citas){
-                System.out.println("Codigo: " + citas.getCodigo());
-                System.out.println("Fecha: " + citas.getFecha());
-                System.out.println("Horario: " + citas.getHorario());
-                System.out.println("Cod_Cliente: " + citas.getCod_Cliente());
-                System.out.println("Cod_Tratamiento: " + citas.getCod_Tratamiento());
-                System.out.println("Cod_Promocion: " + citas.getCod_Promocion());
-                System.out.println(" \n ");
+    //Agrega una cita nueva a la tabla
+    public void insertar(Cita cita) {
+        try {
+            //connection = Conexion.getConnection();
+            state = connection.prepareStatement(insertSQL);
+
+            state.setInt(1, cita.getCod_cliente());
+            state.setDate(2, cita.getFecha());
+            state.setTime(3, cita.getHorario());
+            state.setInt(4, cita.getCod_tratamiento());
+            state.setInt(5, cita.getCod_promocion());
+            state.executeUpdate();
+
+            //connection.close();
+            result.close();
+            state.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Modifica una cita de la tabla
+    public void modificar(Tratamiento tratamiento) {
+        try {
+            //connection = Conexion.getConnection();
+            state = connection.prepareStatement(updateSQL);
+
+            state.setDate(1, cita.getFecha());
+            state.setTime(2, cita.getHorario());
+            state.setInt(3, cita.getCod_tratamiento());
+            state.setInt(4, cita.getCod_promocion());
+            state.executeUpdate();
+
+            //connection.close();
+            result.close();
+            state.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Busca una cita por su codigo
+    public Cita buscar(int cod) {
+        String consultSQL = "SELECT * FROM Cita WHERE codigo = ?" + cod;
+        try {
+            //connection = Conexion.getConnection();
+            state = connection.prepareStatement(consultSQL);
+            //state.setInt(1, codigo);
+            result = state.executeQuery();
+
+            if (result.next()) {
+                int codigo = result.getInt("codigo");
+                int cod_cliente = result.getInt("cod_cliente");
+                Date fecha = result.getDate("fecha");
+                Time horario = result.getTime("horario");
+                int cod_tratamiento = result.getInt("cod_tratamiento");
+                int cod_promocion = result.getInt("cod_promocion");
+                Boolean cancelar = result.getBoolean("cancelar");
+
+                cita = new Cita(codigo, cod_cliente, fecha, horario, cod_tratamiento, cod_promocion, cancelar);
             }
 
-        }catch (Exception e) {
-            e.printStackTrace(System.out);
-        } 
-        return Citas;
-    }
-
-    public void insertar(Cita cita) throws SQLDataException{
-
-        Connection conn = null;
-        PreparedStatement state = null;
-        int registros=0;
-
-        try{
-            conn = Conexion.getConnection();
-            state = conn.prepareStatement(insertSQL);
-
-
-
-            state.setString(1, cita.getFecha());
-            state.setString(2,cita.getHorario());
-            state.setString(3,cita.getCod_Cliente());
-            state.setString(4,cita.getCod_Tratamiento());
-            state.setString(5,cita.getCod_Promocion());
-
-            registros = state.executeUpdate();
-
-            if(registros>0)
-                System.out.println("Cita agregada correctamente");
-
-            Conexion.close(state);
-            Conexion.close(conn);
-
-        }catch (Exception e) {
+            //connection.close();
+            result.close();
+            state.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+        return cita;
     }
 
-    public void modificarFecha(int Codigo, String Fecha) throws SQLDataException{
+    //Borra una cita de la tabla
+    public void borrar(int codigo) {
+        try {
+            //connection = Conexion.getConnection();
+            state = connection.prepareStatement(deleteSQL);
+            state.setInt(1, codigo);
+            state.executeUpdate();
 
-        Connection conn = null;
-        PreparedStatement state = null;
-        int registros=0;
-
-
-        try{
-            conn = Conexion.getConnection();
-            state = conn.prepareStatement(updateSQL);
-
-            state.setString(1,Fecha);
-            state.setInt(2,Codigo);
-
-            registros = state.executeUpdate();
-
-            if(registros>0)
-                System.out.println("Cita actualizada");
-
-
-            Conexion.close(state);
-            Conexion.close(conn);
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void modificarHorario(int Codigo, String Horario) throws SQLDataException{
-
-        Connection conn = null;
-        PreparedStatement state = null;
-        int registros=0;
-
-
-        try{
-            conn = Conexion.getConnection();
-            state = conn.prepareStatement(updateSQL);
-
-            state.setString(1,Horario);
-            state.setInt(2,Codigo);
-
-            registros = state.executeUpdate();
-
-            if(registros>0)
-                System.out.println("Cita actualizada");
-
-
-            Conexion.close(state);
-            Conexion.close(conn);
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void modificarCod_Cliente(int Codigo, String Cod_Cliente) throws SQLDataException{
-
-        Connection conn = null;
-        PreparedStatement state = null;
-        int registros=0;
-
-
-        try{
-            conn = Conexion.getConnection();
-            state = conn.prepareStatement(updateSQL);
-
-            state.setString(1,Cod_Cliente);
-            state.setInt(2,Codigo);
-
-            registros = state.executeUpdate();
-
-            if(registros>0)
-                System.out.println("Cita actualizada");
-
-
-            Conexion.close(state);
-            Conexion.close(conn);
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void modificarCod_Tratamiento(int Codigo, String Cod_Tratamiento) throws SQLDataException{
-
-        Connection conn = null;
-        PreparedStatement state = null;
-        int registros=0;
-
-
-        try{
-            conn = Conexion.getConnection();
-            state = conn.prepareStatement(updateSQL);
-
-            state.setString(1,Cod_Tratamiento);
-            state.setInt(2,Codigo);
-
-            registros = state.executeUpdate();
-
-            if(registros>0)
-                System.out.println("Cita actualizada");
-
-
-            Conexion.close(state);
-            Conexion.close(conn);
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void modificarCod_Promocion(int Codigo, String Cod_Promocion) throws SQLDataException{
-
-        Connection conn = null;
-        PreparedStatement state = null;
-        int registros=0;
-
-
-        try{
-            conn = Conexion.getConnection();
-            state = conn.prepareStatement(updateSQL);
-
-            state.setString(1,Cod_Promocion);
-            state.setInt(2,Codigo);
-
-            registros = state.executeUpdate();
-
-            if(registros>0)
-                System.out.println("Cita actualizada");
-
-
-            Conexion.close(state);
-            Conexion.close(conn);
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Cita buscar(int Codigo) throws SQLException{
-
-        Connection conn = null;
-        PreparedStatement state = null;
-        ResultSet result = null;
-        Cita Cita = null;
-        try{
-            conn = Conexion.getConnection();
-            state = conn.prepareStatement(consultSQL);
-
-            Cita cita = new Cita(result.getInt("Codigo"),
-                    result.getString("Fecha"),
-                    result.getString("Horario"),
-                    result.getString("Cod_Cliente"),
-                    result.getString("Cod_Tratamiento"),
-                    result.getString("Cod_Promocion"));
-            Conexion.close(result);
-            Conexion.close(state);
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        return Cita;
-    }
-
-    public void borrar(int Codigo) throws SQLDataException{
-
-        Connection conn = null;
-        PreparedStatement state = null;
-        int registros=0;
-
-        try{
-            conn = Conexion.getConnection();
-            state = conn.prepareStatement(deleteSQL);
-
-            state.setInt(1,Codigo);
-
-            registros = state.executeUpdate();
-
-            if(registros>0)
-                System.out.println("Cita eliminado");
-
-
-            Conexion.close(state);
-            Conexion.close(conn);
-
-        }catch (Exception e) {
+            //connection.close();
+            state.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

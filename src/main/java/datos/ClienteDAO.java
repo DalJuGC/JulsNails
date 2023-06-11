@@ -8,10 +8,10 @@ import java.sql.*;
 
 
 public class ClienteDAO {
-    public static final String selectSQL = "SELECT * FROM cliente";
-    public static final String insertSQL = "INSERT INTO cliente(codigo, nombre, telefono, domicilio) VALUES (?,?,?,?)";
-    public static final String updateSQL = "UPDATE cliente SET nombre = ?, telefono = ?, domicilio = ? WHERE codigo = ?";
-    public static final String deleteSQL = "DELETE FROM cliente WHERE codigo = ? ";
+    public static final String selectSQL = "SELECT * FROM Cliente";
+    public static final String insertSQL = "INSERT INTO Cliente(codigo, nombre, telefono, domicilio) VALUES (?,?,?,?)";
+    public static final String updateSQL = "UPDATE Cliente SET nombre = ?, telefono = ?, domicilio = ? WHERE codigo = ?";
+    public static final String deleteSQL = "DELETE FROM Cliente WHERE codigo = ? ";
 
     private Connection connection;
     private PreparedStatement state;
@@ -27,7 +27,7 @@ public class ClienteDAO {
         List<Cliente> cli = new ArrayList<>();
 
         try {
-            connection = Conexion.getConnection();
+            //connection = Conexion.getConnection();
             state = connection.prepareStatement(selectSQL);
             result = state.executeQuery();
 
@@ -40,6 +40,8 @@ public class ClienteDAO {
                 Cliente cliente = new Cliente(codigo, nombre, telefono, domicilio);
                 cli.add(cliente);
             }
+            state.close();
+            result.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -49,7 +51,7 @@ public class ClienteDAO {
     //Agrega un cliente nuevo a la tabla
     public void insertar(Cliente cliente) {
         try {
-            connection = Conexion.getConnection();
+            //connection = Conexion.getConnection();
             state = connection.prepareStatement(insertSQL);
 
             state.setString(1, cliente.getNombre());
@@ -57,7 +59,7 @@ public class ClienteDAO {
             state.setString(3, cliente.getDomicilio());
             state.executeUpdate();
 
-            connection.close();
+            //connection.close();
             state.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,7 +69,7 @@ public class ClienteDAO {
     //Modifica un cliente de la tabla
     public void modificar(Cliente cliente) {
         try {
-            connection = Conexion.getConnection();
+            //connection = Conexion.getConnection();
             state = connection.prepareStatement(updateSQL);
 
             state.setString(1, cliente.getNombre());
@@ -76,7 +78,7 @@ public class ClienteDAO {
             state.setInt(4, cliente.getCodigo());
             state.executeUpdate();
 
-            connection.close();
+            //connection.close();
             state.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,10 +87,10 @@ public class ClienteDAO {
 
     //Busca un cliente por su codigo
     public Cliente buscar(int cod) {
-        String consultSQL = "SELECT * FROM cliente WHERE codigo = ?" + cod;
+        String consultSQL = "SELECT * FROM Cliente WHERE codigo = ?" + cod;
 
         try {
-            connection = Conexion.getConnection();
+            //connection = Conexion.getConnection();
             state = connection.prepareStatement(consultSQL);
             //state.setInt(1, codigo);
             result = state.executeQuery();
@@ -102,8 +104,8 @@ public class ClienteDAO {
                 cliente = new Cliente(codigo, nombre, telefono, domicilio);
             }
 
-            connection.close();
             state.close();
+            result.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -113,12 +115,12 @@ public class ClienteDAO {
     //Borra un cliente de la tabla
     public void borrar(int codigo) {
         try {
-            connection = Conexion.getConnection();
+            //connection = Conexion.getConnection();
             state = connection.prepareStatement(deleteSQL);
             state.setInt(1, codigo);
             state.executeUpdate();
 
-            connection.close();
+            //connection.close();
             state.close();
         } catch (SQLException e) {
             e.printStackTrace();

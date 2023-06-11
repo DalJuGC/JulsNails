@@ -20,6 +20,10 @@ public class Tratamiento implements Serializable {
         this.cod_empleado = cod_empleado;
     }
 
+    public Tratamiento(String nombre) {
+        this.nombre = nombre;
+    }
+
     //Getter y Setters
     public int getCodigo(){
         return codigo;

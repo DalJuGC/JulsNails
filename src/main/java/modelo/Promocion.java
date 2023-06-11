@@ -20,6 +20,10 @@ public class Promocion implements Serializable {
         this.vigencia = vigencia;
     }
 
+    public Promocion(String nombre) {
+        this.nombre = nombre;
+    }
+
     //Getters y Setter
     public int getCodigo(){
         return codigo;

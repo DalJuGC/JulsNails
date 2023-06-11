@@ -10,19 +10,25 @@ public class Cita implements Serializable {
     private Time horario;
     private int cod_tratamiento;
     private int cod_promocion;
+    private Boolean cancelar;
 
-    public Cita(){
-
-    }
 
     //Constructor
-    public Cita(int codigo, int cod_cliente, Date fecha, Time horario, int cod_tratamiento, int cod_promocion){
+    public Cita(int codigo, int cod_cliente, Date fecha, Time horario, int cod_tratamiento, int cod_promocion, Boolean cancelar){
         this.codigo = codigo;
         this.cod_cliente = cod_cliente;
         this.fecha = fecha;
         this.horario = horario;
         this.cod_tratamiento = cod_tratamiento;
         this.cod_promocion = cod_promocion;
+        this.cancelar = cancelar;
+    }
+
+    public Cita(int codigo, Date fecha, Time horario, Boolean cancelar){
+        this.codigo = codigo;
+        this.fecha = fecha;
+        this.horario = horario;
+        this.cancelar = cancelar;
     }
 
     //Getters y Setters
@@ -72,5 +78,13 @@ public class Cita implements Serializable {
 
     public void setCod_promocion(int cod_promocion){
         this.cod_promocion = cod_promocion;
+    }
+
+    public Boolean getCancelar(){
+        return cancelar;
+    }
+
+    public void setCancelar(Boolean cancelar){
+        this.cancelar = cancelar;
     }
 }

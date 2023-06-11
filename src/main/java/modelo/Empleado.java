@@ -11,7 +11,7 @@ public class Empleado implements Serializable {
     private String domicilio;
     private Date fecha_contrato;
 
-    public Empleado(String nombre){
+    public Empleado(){
 
     }
 
@@ -23,6 +23,10 @@ public class Empleado implements Serializable {
         this.telefono = telefono;
         this.domicilio = domicilio;
         this.fecha_contrato = fecha_contrato;
+    }
+
+    public Empleado(String nombre){
+        this.nombre = nombre;
     }
 
     //Getter y Setters

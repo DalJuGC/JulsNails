@@ -11,9 +11,9 @@ import java.sql.*;
 public class TratamientoDAO {
     public static final String selectSQL = "SELECT Tratamiento.codigo, Tratamiento.nombre AS Tratamiento, Tratamiento.precio, Empleado.nombre AS Empleado FROM Tratamiento\n" +
             "JOIN Empleado ON Tratamiento.cod_empleado = Empleado.codigo";
-    public static final String insertSQL = "INSERT INTO tratamiento(codigo, nombre, precio, cod_empleado) VALUES (?,?,?,?)";
-    public static final String updateSQL = "UPDATE tratamiento SET nombre = ?, precio = ?, cod_empleado = ? WHERE codigo = ?";
-    public static final String deleteSQL = "DELETE FROM tratamiento WHERE codigo = ? ";
+    public static final String insertSQL = "INSERT INTO Tratamiento(codigo, nombre, precio, cod_empleado) VALUES (?,?,?,?)";
+    public static final String updateSQL = "UPDATE Tratamiento SET nombre = ?, precio = ?, cod_empleado = ? WHERE codigo = ?";
+    public static final String deleteSQL = "DELETE FROM Tratamiento WHERE codigo = ? ";
 
     private Connection connection;
     private PreparedStatement state;
@@ -30,7 +30,7 @@ public class TratamientoDAO {
         List<Tratamiento> trat =  new ArrayList<>();
 
         try {
-            connection = Conexion.getConnection();
+            //connection = Conexion.getConnection();
             state = connection.prepareStatement(selectSQL);
             result = state.executeQuery();
 
@@ -46,6 +46,8 @@ public class TratamientoDAO {
                 Tratamiento tratamiento = new Tratamiento(codigo, nombre, precio, cod_empleado);
                 trat.add(tratamiento);
             }
+            result.close();
+            state.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -55,7 +57,7 @@ public class TratamientoDAO {
     //Agrega un tratamiento nuevo a la tabla
     public void insertar(Tratamiento tratamiento) {
         try {
-            connection = Conexion.getConnection();
+            //connection = Conexion.getConnection();
             state = connection.prepareStatement(insertSQL);
 
             state.setString(1, tratamiento.getNombre());
@@ -63,8 +65,7 @@ public class TratamientoDAO {
             state.setInt(3, tratamiento.getCod_empleado());
             state.executeUpdate();
 
-            connection.close();
-            state.close();
+            //connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -73,7 +74,7 @@ public class TratamientoDAO {
     //Modifica un tratamiento de la tabla
     public void modificar(Tratamiento tratamiento) {
         try {
-            connection = Conexion.getConnection();
+            //connection = Conexion.getConnection();
             state = connection.prepareStatement(updateSQL);
 
             state.setString(1, tratamiento.getNombre());
@@ -82,7 +83,7 @@ public class TratamientoDAO {
             state.setInt(4, tratamiento.getCodigo());
             state.executeUpdate();
 
-            connection.close();
+            //connection.close();
             state.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,7 +95,7 @@ public class TratamientoDAO {
         String consultSQL = "SELECT * FROM tratamiento WHERE codigo = ?" + cod;
 
         try {
-            connection = Conexion.getConnection();
+            //connection = Conexion.getConnection();
             state = connection.prepareStatement(consultSQL);
             //state.setInt(1, codigo);
             result = state.executeQuery();
@@ -108,7 +109,8 @@ public class TratamientoDAO {
                 tratamiento = new Tratamiento(codigo, nombre, precio, cod_empleado);
             }
 
-            connection.close();
+            //connection.close();
+            result.close();
             state.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -119,12 +121,12 @@ public class TratamientoDAO {
     //Borra un tratamiento de la tabla
     public void borrar(int codigo) {
         try {
-            connection = Conexion.getConnection();
+            //connection = Conexion.getConnection();
             state = connection.prepareStatement(deleteSQL);
             state.setInt(1, codigo);
             state.executeUpdate();
 
-            connection.close();
+            //connection.close();
             state.close();
         } catch (SQLException e) {
             e.printStackTrace();
