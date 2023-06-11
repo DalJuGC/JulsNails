@@ -2,65 +2,54 @@ package modelo;
 
 import java.io.Serializable;
 
-public class Promocion implements Serializable{
-    private static final long serialVersionUID = 1L;
-    private int Codigo;
-    private String Nombre;
-    private String Precio;
-    private String Vigencia;
+public class Promocion implements Serializable {
+    private int codigo;
+    private String nombre;
+    private Float precio;
+    private Boolean vigencia;
 
     public Promocion(){
+
     }
 
-    //Borrar
-    public Promocion(int Codigo){
-        this.Codigo = Codigo;
-    }
-    
-    //Insertar
-    public Promocion(int Codigo, String Nombre, String Precio, String Vigencia){
-        this.Nombre = Nombre;
-        this.Precio = Precio;
-        this.Vigencia = Vigencia;
-        this.Codigo = Codigo;
+    //Constructor
+    public Promocion(int codigo, String nombre, Float precio, Boolean vigencia){
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.vigencia = vigencia;
     }
 
-    //Modificar
-    public Promocion(String Nombre, String Precio, String Vigencia){
-        this.Nombre = Nombre;
-        this.Precio = Precio;
-        this.Vigencia = Vigencia;
+    //Getters y Setter
+    public int getCodigo(){
+        return codigo;
     }
 
-    public int getCodigo() {
-        return Codigo;
-    }
-
-    public void setCodigo(int Codigo) {
-        this.Codigo = Codigo;
+    public void setCodigo( int codigo){
+        this.codigo = codigo;
     }
 
     public String getNombre(){
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre){
-        this.Nombre = Nombre;
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
 
-    public String getPrecio() {
-        return Precio;
+    public Float getPrecio(){
+        return precio;
     }
 
-    public void setPrecio(String Precio) {
-        this.Precio = Precio;
+    public void setPrecio(Float precio){
+        this.precio = precio;
     }
 
-    public String getVigencia() {
-        return Vigencia;
+    public Boolean getVigencia(){
+        return vigencia;
     }
 
-    public void setVigencia(String Vigencia) {
-        this.Vigencia = Vigencia;
+    public void setVigencia(Boolean vigencia){
+        this.vigencia = vigencia;
     }
 }
