@@ -1,102 +1,76 @@
 package modelo;
 
 import java.io.Serializable;
+import java.sql.*;
 
-public class Cita implements Serializable{
-    private static final long serialVersionUID = 1L;
-    private static int Codigo;
-    private String Fecha;
-    private String Horario;
-    private String Cod_Cliente;
-    private String Cod_Tratamiento;
-    private String Cod_Promocion;
-    private Object Cita;
+public class Cita implements Serializable {
+    private int codigo;
+    private int cod_cliente;
+    private Date fecha;
+    private Time horario;
+    private int cod_tratamiento;
+    private int cod_promocion;
 
     public Cita(){
+
     }
 
-    //Borrar
-    public Cita(int Codigo){
-        this.Codigo = Codigo;
+    //Constructor
+    public Cita(int codigo, int cod_cliente, Date fecha, Time horario, int cod_tratamiento, int cod_promocion){
+        this.codigo = codigo;
+        this.cod_cliente = cod_cliente;
+        this.fecha = fecha;
+        this.horario = horario;
+        this.cod_tratamiento = cod_tratamiento;
+        this.cod_promocion = cod_promocion;
     }
 
-    //Insertar
-    public Cita(  int Codigo,String Cod_Cliente, String Fecha, String Horario, String Cod_Tratamiento,  String Cod_Promocion){
-        this.Codigo = Codigo;
-        this.Cod_Cliente = Cod_Cliente;
-        this.Fecha = Fecha;
-        this.Horario = Horario;
-        this.Cod_Tratamiento = Cod_Tratamiento;
-        this.Cod_Promocion = Cod_Promocion;
+    //Getters y Setters
+    public int getCodigo(){
+        return codigo;
     }
 
-    //Modificar
-    public Cita(String Cod_Cliente, String Fecha, String Horario, String Cod_Tratamiento,  String Cod_Promocion){
-        this.Cod_Cliente = Cod_Cliente;
-        this.Fecha = Fecha;
-        this.Horario = Horario;
-        this.Cod_Tratamiento = Cod_Tratamiento;
-        this.Cod_Promocion = Cod_Promocion;
+    public void setCodigo(int codigo){
+        this.codigo = codigo;
     }
 
-    public static int getCodigo() {
-        return Codigo;
+    public int getCod_cliente(){
+        return cod_cliente;
     }
 
-    public void setCodigo(int Codigo) {
-        this.Codigo = Codigo;
+    public void setCod_cliente(int cod_cliente){
+        this.cod_cliente = cod_cliente;
     }
 
-    public String getFecha() {
-        return Fecha;
+    public Date getFecha(){
+        return fecha;
     }
 
-    public void setFecha(String Fecha) {
-        this.Fecha = Fecha;
+    public void setFecha(Date fecha){
+        this.fecha = fecha;
     }
 
-    public String getHorario() {
-        return Horario;
+    public Time getHorario(){
+        return horario;
     }
 
-    public void setHorario(String Horario) {
-        this.Horario = Horario;
+    public void setHorario(Time horario){
+        this.horario = horario;
     }
 
-    public String getCod_Cliente() {
-        return Cod_Cliente;
+    public int getCod_tratamiento(){
+        return cod_tratamiento;
     }
 
-    public void setCod_Cliente(String Cod_Cliente) {
-        this.Cod_Cliente = Cod_Cliente;
+    public void setCod_tratamiento(int cod_tratamiento){
+        this.cod_tratamiento = cod_tratamiento;
     }
 
-    public String getCod_Tratamiento() {
-        return Cod_Tratamiento;
+    public int getCod_promocion(){
+        return cod_promocion;
     }
 
-    public void setCod_Tratamiento(String Cod_Tratamiento) {
-        this.Cod_Tratamiento = Cod_Tratamiento;
+    public void setCod_promocion(int cod_promocion){
+        this.cod_promocion = cod_promocion;
     }
-
-    public String getCod_Promocion() {
-        return Cod_Tratamiento;
-    }
-
-    public void setCod_Promocion(String Cod_Promocion) {
-        this.Cod_Promocion = Cod_Promocion;
-    }
-
-    public String setCod_Promocion(){
-        return Cod_Promocion;
-    }
-
-    public Object getCita() {
-        return Cita;
-    }
-
-    public void setCita(Object Cita) {
-        this.Cita = Cita;
-    }
-
 }

@@ -2,50 +2,54 @@ package modelo;
 
 import java.io.Serializable;
 
-public class Cliente implements Serializable{
-    private int Codigo;
-    private String Nombre;
-    private String Telefono;
+public class Cliente implements Serializable {
+    private int codigo;
+    private String nombre;
+    private String telefono;
+    private String domicilio;
 
     public Cliente(){
-    }
-    
-    public Cliente(int Codigo, String Nombre, String Telefono){
-        this.Codigo = Codigo;
-        this.Nombre = Nombre;
-        this.Telefono = Telefono;
+
     }
 
-    public Cliente(int codigo) {
-        this.Codigo = Codigo;
+    //Constructor
+    public Cliente(int codigo, String nombre, String telefono, String domicilio) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.domicilio = domicilio;
     }
 
-    public int getCodigo() {
-        return Codigo;
+    // Getters y Setters
+    public int getCodigo(){
+        return codigo;
     }
 
-    public void setCodigo(int Codigo) {
-        this.Codigo = Codigo;
+    public void setCodigo(int codigo){
+        this.codigo = codigo;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getNombre(){
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
 
-    public String getTelefono() {
-        return Telefono;
+    public String getTelefono(){
+        return telefono;
     }
 
-    public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
+    public void setTelefono(String telefono){
+        this.telefono = telefono;
     }
 
-    @Override
-    public String toString(){
-        return "Cliente{" + "Codigo=" + Codigo + ",Nombre=" + Nombre + ",Telefono=" + Telefono + "}";
+    public String getDomicilio(){
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio){
+        this.domicilio = domicilio;
     }
 }
