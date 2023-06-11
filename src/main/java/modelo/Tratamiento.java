@@ -1,65 +1,55 @@
 package modelo;
+
 import java.io.Serializable;
 
-public class Tratamiento implements Serializable{
-    private static final long serialVersionUID = 1L;
-    private int Codigo;
-    private String Nombre;
-    private String Precio;
-    private String Cod_Empleado;
+public class Tratamiento implements Serializable {
+    private int codigo;
+    private String nombre;
+    private Float precio;
+    private int cod_empleado;
 
     public Tratamiento(){
+
     }
 
-    //Borrar
-    public Tratamiento(int Codigo){
-        this.Codigo = Codigo;
+    //Constructor
+    public Tratamiento(int codigo, String nombre, Float precio, int cod_empleado){
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.cod_empleado = cod_empleado;
     }
 
-    //Insertar
-    public Tratamiento(String Nombre, String Precio,String Cod_Empleado){
-        this.Nombre = Nombre;
-        this.Precio = Precio;
-        this.Cod_Empleado = Cod_Empleado;
+    //Getter y Setters
+    public int getCodigo(){
+        return codigo;
     }
 
-    //Modificar
-    public Tratamiento(int Codigo, String Nombre, String Precio, String Cod_Empleado){
-        this.Codigo = Codigo;
-        this.Nombre = Nombre;
-        this.Precio = Precio;
-        this.Cod_Empleado = Cod_Empleado;
+    public void setCodigo(int codigo){
+        this.codigo = codigo;
     }
 
-    public int getCodigo() {
-        return Codigo;
+    public String getNombre(){
+        return nombre;
     }
 
-    public void setCodigo(int Codigo) {
-        this.Codigo = Codigo;
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public Float getPrecio(){
+        return precio;
     }
 
-    public void setNombre(int Nombre) {
-        this.Nombre = String.valueOf(Nombre);
+    public void setPrecio(Float precio){
+        this.precio = precio;
     }
 
-    public String getPrecio() {
-        return Precio;
+    public int getCod_empleado(){
+        return cod_empleado;
     }
 
-    public void setPrecio(String Precio) {
-        this.Precio = Precio;
-    }
-
-    public String getCod_Empleado(){
-        return Cod_Empleado;
-    }
-
-    public void setCod_Empleado(String Cod_Empleado){
-        this.Cod_Empleado = Cod_Empleado;
+    public void setCod_empleado(int cod_empleado){
+        this.cod_empleado = cod_empleado;
     }
 }
