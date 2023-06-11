@@ -1,88 +1,76 @@
 package modelo;
+
 import java.io.Serializable;
-public class Empleado implements Serializable{
-    private static final long seralVersionUID =1L;
-    private int Codigo;
-    private String Nombre;
-    private String Cargo;
-    private String Telefono;
-    private String Domicilio;
-    private String Fech_Con;
+import java.sql.*;
 
-    public Empleado(){
+public class Empleado implements Serializable {
+    private int codigo;
+    private String nombre;
+    private String cargo;
+    private String telefono;
+    private String domicilio;
+    private Date fecha_contrato;
+
+    public Empleado(String nombre){
+
     }
 
-    public Empleado(int Codigo, String Nombre, String Cargo, String Telefono, String Domicilio, String Fech_Con){
-        this.Codigo = Codigo;
-        this.Nombre = Nombre;
-        this.Cargo = Cargo;
-        this.Telefono = Telefono;
-        this.Domicilio = Domicilio;
-        this.Fech_Con = Fech_Con;
+    //Constructor
+    public Empleado(int codigo, String nombre, String cargo, String telefono, String domicilio, Date fecha_contrato){
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.cargo = cargo;
+        this.telefono = telefono;
+        this.domicilio = domicilio;
+        this.fecha_contrato = fecha_contrato;
     }
 
-    public Empleado(String Nombre, String Cargo, String Telefono, String Domicilio, String Fech_Con){
-        this.Nombre = Nombre;
-        this.Cargo = Cargo;
-        this.Telefono = Telefono;
-        this.Domicilio = Domicilio;
-        this.Fech_Con = Fech_Con;
-    }
-
-    public Empleado(int Codigo){
-        this.Codigo = Codigo;
-    }
-
+    //Getter y Setters
     public int getCodigo(){
-        return Codigo;
+        return codigo;
     }
 
-    public void setCodigo(int Codigo){
-        this.Codigo = Codigo;
+    public void setCodigo(int codigo){
+        this.codigo = codigo;
     }
 
     public String getNombre(){
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre){
-        this.Nombre = Nombre;
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
 
     public String getCargo(){
-        return Cargo;
+        return cargo;
     }
 
-    public void setCargo(String Cargo){
-        this.Cargo = Cargo;
+    public void setCargo(String cargo){
+        this.cargo = cargo;
     }
 
-    public String getTelefono() {
-        return Telefono;
+    public String getTelefono(){
+        return telefono;
     }
 
-    public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
+    public void setTelefono(String telefono){
+        this.telefono = telefono;
     }
 
     public String getDomicilio(){
-        return Domicilio;
+        return domicilio;
     }
 
-    public void setDomicilio(String Domicilio){
-        this.Domicilio = Domicilio;
+    public void setDomicilio(String domicilio){
+        this.domicilio = domicilio;
     }
 
-    public String getFech_Con(){
-        return Fech_Con;
+    public Date getFecha_contrato(){
+        return fecha_contrato;
     }
 
-    public void setFech_Con(String Fech_Con){
-        this.Fech_Con = Fech_Con;
-    }
-
-    @Override
-    public String toString(){
-        return "Empleado{" + "Codigo=" + Codigo + ",Nombre=" + Nombre + ",Cargo=" + Cargo + ",Telefono=" + Telefono + ",Domicilio=" + Domicilio + ",Fech_Con=" + Fech_Con + "}";
+    public void setFecha_contrato(Date fecha_contrato){
+        this.fecha_contrato = fecha_contrato;
     }
 }
