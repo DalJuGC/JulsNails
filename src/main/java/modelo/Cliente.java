@@ -8,13 +8,15 @@ public class Cliente implements Serializable {
     private String telefono;
     private String domicilio;
 
-    public Cliente() {
-
-    }
-
     //Constructor
     public Cliente(int codigo, String nombre, String telefono, String domicilio) {
         this.codigo = codigo;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.domicilio = domicilio;
+    }
+
+    public Cliente(String nombre, String telefono, String domicilio) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.domicilio = domicilio;

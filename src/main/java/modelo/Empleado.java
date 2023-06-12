@@ -25,6 +25,14 @@ public class Empleado implements Serializable {
         this.fecha_contrato = fecha_contrato;
     }
 
+    public Empleado(String nombre, String cargo, String telefono, String domicilio, Date fecha_contrato){
+        this.nombre = nombre;
+        this.cargo = cargo;
+        this.telefono = telefono;
+        this.domicilio = domicilio;
+        this.fecha_contrato = fecha_contrato;
+    }
+
     public Empleado(String nombre){
         this.nombre = nombre;
     }

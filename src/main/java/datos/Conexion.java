@@ -15,7 +15,7 @@ public class Conexion {
         } catch (SQLException e) {
             System.out.println("Error al intentar conectarse a la BD" + server);
         } catch (ClassNotFoundException e) {
-            System.out.println("Error");
+            System.out.println(e);
 
         }
         return null;
@@ -37,9 +37,9 @@ public class Conexion {
         }
     }
 
-    public static void close(Connection conn){
+    public static void close(Connection connection){
         try{
-            conn.close();
+            connection.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
