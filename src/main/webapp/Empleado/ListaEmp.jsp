@@ -4,6 +4,9 @@
 <html>
 <head>
     <title>Empleados</title>
+  <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+  <link rel="stylesheet" href="/JulsNails/Estilos/Button.css" type="text/css">
+  <link rel="stylesheet" href="/JulsNails/Estilos/Tabla.css" type="text/css">
 </head>
 <body>
 <header>
@@ -21,12 +24,10 @@
 <main>
   <div>
     <h1>Citas Registradas</h1>
-    <form action="/JulsNails/BuscarEmpleado" method="post">
-      <input type="number" name="codigo" placeholder="Buscar"/>
-      <input type="submit" value="Buscar"/>
-    </form>
-    <button onclick="location.href='/JulsNails/Empleado/RegistrarEmp.jsp'">Registrar empleado</button>
-    <button onclick="location.href='/JulsNails/Empleado/ModificarEmp.jsp'">Modificar empleado</button>
+    <button class="button" onclick="location.href='/JulsNails/Empleado/RegistrarEmp.jsp'">Registrar empleado</button>
+    <button class="button" onclick="location.href='/JulsNails/Empleado/ModificarEmp.jsp'">Modificar empleado</button>
+    <button class="button" onclick="location.href='/JulsNails/Empleado/BuscarEmp.jsp'">Buscar empleado</button>
+
     <table>
       <thead>
       <tr>

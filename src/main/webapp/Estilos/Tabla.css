@@ -1,11 +1,22 @@
 table {
-    width: 100%;
-    border: 1px solid #000;
-}
-th, td {
-    width: 25%;
-    text-align: left;
-    vertical-align: top;
-    border: 1px solid #000;
+    font-family: Comic Sans MS, cursive;
     border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    font-family: Comic Sans MS, cursive;
+    padding: 8px;
+    text-align: center;
+    border-bottom: 5px solid #9b46a2;
+}
+
+th {
+    font-family: Comic Sans MS, cursive;
+    background-color: #f5aff4;
+}
+
+tr:hover {
+    font-family: Comic Sans MS, cursive;
+    background-color: #ec5cef;
 }

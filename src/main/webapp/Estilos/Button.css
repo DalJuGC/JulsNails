@@ -1,0 +1,10 @@
+.button {
+    font-family: Comic Sans MS, cursive;
+    background-color: #a856b0;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+}

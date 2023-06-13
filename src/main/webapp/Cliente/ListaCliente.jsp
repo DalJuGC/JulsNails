@@ -4,6 +4,9 @@
 <html>
 <head>
     <title>Clientes</title>
+    <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Button.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Tabla.css" type="text/css">
 </head>
 <body>
 <header>
@@ -21,10 +24,10 @@
 <main>
     <div>
         <h1>Clientes</h1>
-        <button onclick="location.href='/JulsNails/Cliente/RegistrarCliente.jsp'">Registrar cliente</button>
-        <button onclick="location.href='/JulsNails/Cliente/BuscarCliente.jsp'">Buscar cliente</button>
-        <button onclick="location.href='/JulsNails/Cliente/ModificarCliente.jsp'">Modificar cliente</button>
-        <form method="get" action="/JulsNails/ListaCliente">
+        <button class="button" onclick="location.href='/JulsNails/Cliente/RegistrarCliente.jsp'">Registrar cliente</button>
+        <button class="button" onclick="location.href='/JulsNails/Cliente/ModificarCliente.jsp'">Modificar cliente</button>
+        <button class="button" onclick="location.href='/JulsNails/Cliente/BuscarCliente.jsp'">Buscar cliente</button>
+        <form>
             <table>
                 <thead>
                 <tr>
@@ -41,10 +44,10 @@
                         for (Cliente cliente : lista) {
                 %>
                 <tr>
-                    <td><%=cliente.getCodigo() %></td>
-                    <td><%=cliente.getNombre() %></td>
-                    <td><%=cliente.getTelefono() %></td>
-                    <td><%=cliente.getDomicilio() %></td>
+                    <td><%out.print(cliente.getCodigo()); %></td>
+                    <td><%out.print(cliente.getNombre()); %></td>
+                    <td><%out.print(cliente.getTelefono()); %></td>
+                    <td><%out.print(cliente.getDomicilio()); %></td>
                 </tr>
                 <%
                         }

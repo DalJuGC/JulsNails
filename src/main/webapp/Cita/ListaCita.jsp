@@ -1,11 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="modelo.Cita"%>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta charset="UTF-8">
     <title>Citas registradas</title>
+    <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Button.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Tabla.css" type="text/css">
 </head>
 <body>
 <header>
@@ -23,10 +26,11 @@
 <main>
     <div>
         <h1>Citas Registradas</h1>
-        <button onclick="location.href='/JulsNails/Cita/RegistrarCita.jsp'">Registrar cita</button>
-        <button onclick="location.href='/JulsNails/Cita/BuscarCita.jsp'">Buscar cita</button>
-        <button onclick="location.href='/JulsNails/Cita/ModificarCita.jsp'">Modificar cita</button>
 
+        <button class="button" onclick="location.href='/JulsNails/Cita/RegistrarCita.jsp'">Registrar cita</button>
+        <button class="button" onclick="location.href='/JulsNails/Cita/ModificarCita.jsp'">Modificar cita</button>
+        <button class="button" onclick="location.href='/JulsNails/Cita/BuscarCita.jsp'">Buscar cita</button>
+        <form method="get" action="ListaCita">
         <table>
             <thead>
             <tr>
@@ -39,26 +43,25 @@
             </tr>
             </thead>
             <tbody>
-            <%
-                ArrayList<Cita> lista = (ArrayList<Cita>)session.getAttribute("datos");
-                if (lista != null && !lista.isEmpty()){
-                    for (Cita cita : lista){
-            %>
+            <% List<Cita> lista = (List<Cita>) request.getAttribute("cita"); %>
+            <% if (lista != null && !lista.isEmpty()) {%>
+                <% for (Cita cita : lista) {%>
             <tr>
-                <td><%out.print(cita.getCodigo()); %></td>
-                <td><%out.print(cita.getCod_cliente()); %></td>
-                <td><%out.print(cita.getFecha()); %></td>
-                <td><%out.print(cita.getHorario()); %></td>
-                <td><%out.print(cita.getCod_tratamiento()); %></td>
-                <td><%out.print(cita.getCod_promocion()); %></td>
-                <td><%if (cita.getCancelar()) out.print("Cancelada"); else out.print("Activa");%></td>
+                <td><%=cita.getCodigo() %></td>
+                <td><%=cita.getCod_cliente() %></td>
+                <td><%=cita.getFecha() %></td>
+                <td><%=cita.getHorario() %></td>
+                <td><%=cita.getCod_tratamiento() %></td>
+                <td><%=cita.getCod_promocion() %></td>
+                <td><% if (cita.getCancelar()) out.print("Cancelada"); else out.print("Activa");%></td>
             </tr>
-            <%
-                    }
-                }
-            %>
             </tbody>
+            <%
+                }
+            }
+            %>
         </table>
+        </form>
     </div>
 </main>
 </body>

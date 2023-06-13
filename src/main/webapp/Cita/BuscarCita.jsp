@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Buscar</title>
+    <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Buscador.css" type="text/css">
 </head>
 <body>
 <header>
@@ -21,8 +23,8 @@
 <main>
     <form method="get" action="/JulsNails/BuscarCita">
         <fieldset>
-            <input type="number" name="Codigo" placeholder="Buscar"/>
-            <input type="submit" value="Buscar"/>
+            <input class="search-input" type="number" name="Codigo" placeholder="Buscar"/>
+            <input class="search-button" type="submit" value="Buscar"/>
         </fieldset>
     </form>
         <%-- Obtiene cita del atributo de solicitud --%>

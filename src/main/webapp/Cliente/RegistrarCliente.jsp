@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Clientes</title>
+    <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Formularios.css" type="text/css">
 </head>
 <body>
 <header>
@@ -22,7 +24,7 @@
             <p>Nombre <input type="text" name="nombre"></p>
             <p>Teléfono <input type="text" name="telefono"></p>
             <p>Domicilio <input type="text" name="domicilio"></p>
-            <p><input type="submit" value="Registrar"></p>
+            <p><input class="button" type="submit" value="Registrar"></p>
         </form>
     </div>
 </main>

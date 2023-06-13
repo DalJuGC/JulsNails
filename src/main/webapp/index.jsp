@@ -1,5 +1,10 @@
 <html>
-
+<head>
+    <title>Inicio</title>
+    <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/LogoIndex.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Index.css" type="text/css">
+</head>
 <body>
 <header>
     <nav>
@@ -13,7 +18,15 @@
         </ul>
     </nav>
 </header>
-<h2>Hello World!</h2>
+<h1> </h1>
+    <div class="image-container">
+        <img class="creator-image" src="/JulsNails/Imagenes/JulsNails.jpg">
+    </div>
+    <div class="container">
+        <p>Contacto</p>
+        <p>Galindo Castillo Dalia Julissa</p>
+        <p>zs19022216@estudiantes.uv.mx</p>
+    </div>
 </body>
 
 </html>

@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Empleados</title>
+    <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Formularios.css" type="text/css">
 </head>
 <body>
 <header>
@@ -25,7 +27,7 @@
             <p>Teléfono <input type="text" name="telefono"></p>
             <p>Domicilio <input type="text" name="domicilio"></p>
             <p>Fecha de contratación <input type="date" name="fecha_contrato"></p>
-            <p><input type="submit" value="Registrar"></p>
+            <p><input class="button" type="submit" value="Registrar"></p>
         </form>
     </div>
 </main>

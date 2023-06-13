@@ -3,7 +3,8 @@
 <html>
     <head>
         <title>Promociones</title>
-    </head>
+        <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+        <link rel="stylesheet" href="/JulsNails/Estilos/Formularios.css" type="text/css">    </head>
     <body>
         <header>
             <nav>
@@ -23,7 +24,7 @@
                 <p>Nombre <input type="text" name="nombre"></p>
                 <p>Precio <input type="text" name="precio"></p>
                 <p>Vigencia <lebel><input type="checkbox" name="vigencia"></lebel></p>
-                <p><input type="submit" value="Registrar"></p>
+                <p><input class="button" type="submit" value="Registrar"></p>
             </form>
         </div>
     </main>

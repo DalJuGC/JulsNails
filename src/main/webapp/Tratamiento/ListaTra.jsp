@@ -4,6 +4,9 @@
 <html>
 <head>
     <title>Citas registradas</title>
+    <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Button.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Tabla.css" type="text/css">
 </head>
 <body>
 <header>
@@ -21,9 +24,9 @@
 <main>
     <div>
         <h1>Tratamientos</h1>
-        <button onclick="location.href='/JulsNails/Tratamiento/RegistrarTrat.jsp'">Agregar tratamiento</button>
-        <button onclick="location.href='/JulsNails/Tratamiento/BuscarTrat.jsp'">Buscar tratamiento</button>
-        <button onclick="location.href='/JulsNails/Tratamiento/ModificarTrat.jsp'">Modificar tratamiento</button>
+        <button class="button" onclick="location.href='/JulsNails/Tratamiento/RegistrarTrat.jsp'">Agregar tratamiento</button>
+        <button class="button" onclick="location.href='/JulsNails/Tratamiento/ModificarTrat.jsp'">Modificar tratamiento</button>
+        <button class="button" onclick="location.href='/JulsNails/Tratamiento/BuscarTrat.jsp'">Buscar tratamiento</button>
         <table>
             <thead>
             <tr>

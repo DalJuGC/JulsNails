@@ -4,7 +4,8 @@
 <html>
     <head>
         <title>Tratamientos</title>
-    </head>
+        <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+        <link rel="stylesheet" href="/JulsNails/Estilos/Formularios.css" type="text/css">    </head>
     <body>
         <header>
             <nav>
@@ -22,9 +23,9 @@
         <div>
             <form method="post" action="/JulsNails/RegistrarTratamiento">
                 <p>Tratamiento <input type="text" name="nombre"></p>
-                <p>Precio <input type="number" name="precio"></p>
+                <p>Precio <input type="text" name="precio"></p>
                 <p>Empleado <input type="text" name="cod_empleado"></p>
-                <p><input type="submit" value="Registrar"></p>
+                <p><input class="button" type="submit" value="Registrar"></p>
             </form>
         </div>
     </main>

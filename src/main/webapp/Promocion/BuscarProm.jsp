@@ -1,14 +1,10 @@
-<%@ page import="modelo.Promocion" %><%--
-  Created by IntelliJ IDEA.
-  User: Julit
-  Date: 04/06/2023
-  Time: 07:19 p. m.
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="modelo.Promocion" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Buscar</title>
+    <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Buscador.css" type="text/css">
 </head>
 <body>
 <header>
@@ -26,8 +22,8 @@
 <main>
     <form method="post" action="/JulsNails/BuscarPromocion">
         <fieldset>
-            <input type="number" name="Codigo" placeholder="Buscar"/>
-            <input type="submit" value="Buscar"/>
+            <input class="search-input" type="number" name="Codigo" placeholder="Buscar"/>
+            <input class="search-button" type="submit" value="Buscar"/>
         </fieldset>
     </form>
     <%-- Obtiene cita del atributo de solicitud --%>

@@ -21,6 +21,6 @@ public class ListaCita extends HttpServlet {
         List<Cita> lista = citaDAO.listar();
         rq.setAttribute("cita", lista);
 
-        rq.getRequestDispatcher("ListaCita.jsp").forward(rq, rs);
+        rq.getRequestDispatcher("/JulsNails/ListaCita.jsp").forward(rq, rs);
     }
 }

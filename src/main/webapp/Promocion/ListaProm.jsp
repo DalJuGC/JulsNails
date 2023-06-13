@@ -4,6 +4,9 @@
 <html>
 <head>
     <title>Citas registradas</title>
+    <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Button.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Tabla.css" type="text/css">
 </head>
 <body>
 <header>
@@ -21,9 +24,9 @@
 <main>
     <div>
         <h1>Promociones</h1>
-        <button onclick="location.href='/JulsNails/Promocion/RegistrarProm.jsp'">Agregar promoción</button>
-        <button onclick="location.href='/JulsNails/Promocion/BuscarProm.jsp'">Buscar Promoción</button>
-        <button onclick="location.href='/JulsNails/Promocion/ModificarProm.jsp'">Modificar promoción</button>
+        <button class="button" onclick="location.href='/JulsNails/Promocion/RegistrarProm.jsp'">Agregar promoción</button>
+        <button class="button" onclick="location.href='/JulsNails/Promocion/ModificarProm.jsp'">Modificar promoción</button>
+        <button class="button" onclick="location.href='/JulsNails/Promocion/BuscarProm.jsp'">Buscar Promoción</button>
         <table>
             <thead>
             <tr>

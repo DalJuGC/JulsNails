@@ -2,7 +2,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Buscar</title>
+    <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+    <link rel="stylesheet" href="/JulsNails/Estilos/Buscador.css" type="text/css">
 </head>
 <body>
 <header>
@@ -20,8 +22,8 @@
 <main>
     <form method="post" action="/JulsNails/BuscarEmpleado">
         <fieldset>
-            <input type="number" name="Codigo" placeholder="Buscar"/>
-            <input type="submit" value="Buscar"/>
+            <input class="search-input" type="number" name="Codigo" placeholder="Buscar"/>
+            <input class="search-button" type="submit" value="Buscar"/>
         </fieldset>
     </form>
     <%-- Obtiene cita del atributo de solicitud --%>

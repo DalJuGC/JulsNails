@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>Citas</title>
+        <link rel="stylesheet" href="/JulsNails/Estilos/BarraNav.css" type="text/css">
+        <link rel="stylesheet" href="/JulsNails/Estilos/Formularios.css" type="text/css">
     </head>
     <body>
         <header>
@@ -19,12 +21,12 @@
         <main>
             <div>
                 <form method="post" action="/JulsNails/RegistrarCita">
-                    <p>Cliente <input type="number" name="cod_cliente"></p>
+                    <p>Cliente <input type="text" name="cod_cliente"></p>
                     <p>Fecha <input type="date" name="fecha"></p>
                     <p>Horario <input type="time" name="horario"></p>
-                    <p>Tratamiento <input type="number" name="cod_tratamiento"></p>
-                    <p>Promoción <input type="number" name="cod_promocion"></p>
-                    <p><input type="submit" value="Registrar"></p>
+                    <p>Tratamiento <input type="text" name="cod_tratamiento"></p>
+                    <p>Promoción <input type="text" name="cod_promocion"></p>
+                    <p><input class="button" type="submit" value="Registrar"></p>
                 </form>
             </div>
         </main>
