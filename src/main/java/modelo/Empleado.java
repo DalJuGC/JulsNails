@@ -33,6 +33,10 @@ public class Empleado implements Serializable {
         this.fecha_contrato = fecha_contrato;
     }
 
+    public Empleado(int codigo){
+        this.codigo = codigo;
+    }
+
     public Empleado(String nombre){
         this.nombre = nombre;
     }

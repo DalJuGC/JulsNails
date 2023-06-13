@@ -1,35 +1,26 @@
 package controlador.Cita;
 
 import datos.CitaDAO;
+import modelo.Cita;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletException;
-import javax.annotation.Resource;
-import javax.sql.DataSource;
 
-import java.sql.SQLException;
-import java.sql.Connection;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "ListaCita", urlPatterns = {"/ListaCita"})
 public class ListaCita extends HttpServlet {
-    @Resource(name = "jdbc/database")
-    private DataSource conexion;
 
+    @Override
     protected void doGet(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
-        try {
-            Connection connection = conexion.getConnection();
-            CitaDAO citaDAO = new CitaDAO(connection);
-            rq.getSession().setAttribute("datos", citaDAO.listar());
+        CitaDAO citaDAO = new CitaDAO();
+        List<Cita> lista = citaDAO.listar();
+        rq.setAttribute("cita", lista);
 
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         rq.getRequestDispatcher("ListaCita.jsp").forward(rq, rs);
     }
-
 }

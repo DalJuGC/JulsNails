@@ -22,6 +22,10 @@ public class Cliente implements Serializable {
         this.domicilio = domicilio;
     }
 
+    public Cliente(int codigo){
+        this.codigo = codigo;
+    }
+
     public Cliente(String nombre) {
         this.nombre = nombre;
     }

@@ -8,21 +8,21 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="/ProyectoDAW/index.jsp">Inicio</a></li>
-                    <li><a href="/ProyectoDAW/Cliente/ListaCliente.jsp">Clientes</a></li>
-                    <li><a href="/ProyectoDAW/Cita/ListaCita.jsp">Citas</a></li>
-                    <li><a href="/ProyectoDAW/Tratamiento/ListaTra.jsp">Tratamientos</a></li>
-                    <li><a href="/ProyectoDAW/Promocion/ListaProm.jsp">Promociones</a></li>
-                    <li><a href="/ProyectoDAW/Empleado/ListaEmp.jsp">Empleados</a></li>
+                    <li><a href="/JulsNails/index.jsp">Inicio</a></li>
+                    <li><a href="/JulsNails/Cliente/ListaCliente.jsp">Clientes</a></li>
+                    <li><a href="/JulsNails/Cita/ListaCita.jsp">Citas</a></li>
+                    <li><a href="/JulsNails/Tratamiento/ListaTra.jsp">Tratamientos</a></li>
+                    <li><a href="/JulsNails/Promocion/ListaProm.jsp">Promociones</a></li>
+                    <li><a href="/JulsNails/Empleado/ListaEmp.jsp">Empleados</a></li>
                 </ul>
             </nav>
         </header>
     <main>
         <div>
-            <form method="post" action="/ProyectoDAW/Cita/SVRProm.java">
-                <p>Promoción <input type="text" name="Nombre"></p>
-                <p>Precio <input type="number" name="Precio"></p>
-                <p>Vigencia <input type="" name="Vigencia"></p>
+            <form method="post" action="/JulsNails/RegistrarPromocion">
+                <p>Nombre <input type="text" name="nombre"></p>
+                <p>Precio <input type="text" name="precio"></p>
+                <p>Vigencia <lebel><input type="checkbox" name="vigencia"></lebel></p>
                 <p><input type="submit" value="Registrar"></p>
             </form>
         </div>

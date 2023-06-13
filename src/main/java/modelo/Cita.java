@@ -24,19 +24,25 @@ public class Cita implements Serializable {
         this.cancelar = cancelar;
     }
 
-    public Cita(int codigo, Date fecha, Time horario, Boolean cancelar){
-        this.codigo = codigo;
-        this.fecha = fecha;
-        this.horario = horario;
-        this.cancelar = cancelar;
-    }
-
     public Cita(int cod_cliente, Date fecha, Time horario, int cod_tratamiento, int cod_promocion){
         this.cod_cliente = cod_cliente;
         this.fecha = fecha;
         this.horario = horario;
         this.cod_tratamiento = cod_tratamiento;
         this.cod_promocion = cod_promocion;
+    }
+
+    public Cita(int codigo){
+        this.codigo = codigo;
+    }
+
+    public Cita(int cod_cliente, Date fecha, Time horario, int cod_tratamiento, int cod_promocion, Boolean cancelar) {
+        this.cod_cliente = cod_cliente;
+        this.fecha = fecha;
+        this.horario = horario;
+        this.cod_tratamiento = cod_tratamiento;
+        this.cod_promocion = cod_promocion;
+        this.cancelar = cancelar;
     }
 
     //Getters y Setters

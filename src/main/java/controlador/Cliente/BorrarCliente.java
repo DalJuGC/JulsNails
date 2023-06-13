@@ -1,6 +1,7 @@
 package controlador.Cliente;
 
 import datos.ClienteDAO;
+import modelo.Cliente;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
-import java.sql.SQLException;
-import java.sql.Connection;
 import java.io.IOException;
 
 @WebServlet(name = "BorrarCliente", urlPatterns = {"/BorrarCliente"})
@@ -22,13 +21,10 @@ public class BorrarCliente extends HttpServlet {
     protected void doGet(HttpServletRequest rq, HttpServletResponse rs) throws IOException {
         int codigo = Integer.parseInt(rq.getParameter("codigo"));
 
-        try{
-            Connection connection = conexion.getConnection();
-            ClienteDAO cliDAO = new ClienteDAO(connection);
-            cliDAO.borrar(codigo);
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        rs.sendRedirect("/JulsNails/Cliente/BorrarCliente.jsp");
+        ClienteDAO cliDAO = new ClienteDAO();
+        Cliente cliente = new Cliente(codigo);
+        cliDAO.borrar(cliente);
+
+        rs.sendRedirect("/JulsNails/Cliente/BuscarCliente.jsp");
     }
 }

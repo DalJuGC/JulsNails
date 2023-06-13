@@ -5,7 +5,7 @@ public class Conexion {
     private static String user = "postgres";
     private static String pswd = "password";
     private static String bd = "JulsNails";
-    private static String server = "jdbc:postgresql://localhost:5432/" + bd;
+    private static String server = "jdbc:postgresql://localhost:5432/"+bd;
     private static String driver = "org.postgresql.Driver";
 
     public static Connection getConnection() {
@@ -13,10 +13,9 @@ public class Conexion {
             Class.forName(driver);
             return DriverManager.getConnection(server, user, pswd);
         } catch (SQLException e) {
-            System.out.println("Error al intentar conectarse a la BD" + server);
+            e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            System.out.println(e);
-
+            e.printStackTrace();
         }
         return null;
     }

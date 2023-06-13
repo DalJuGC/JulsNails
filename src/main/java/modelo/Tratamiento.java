@@ -9,7 +9,6 @@ public class Tratamiento implements Serializable {
     private int cod_empleado;
 
     public Tratamiento(){
-
     }
 
     //Constructor
@@ -18,6 +17,16 @@ public class Tratamiento implements Serializable {
         this.nombre = nombre;
         this.precio = precio;
         this.cod_empleado = cod_empleado;
+    }
+
+    public Tratamiento(String nombre, Float precio, int cod_empleado){
+        this.nombre = nombre;
+        this.precio = precio;
+        this.cod_empleado = cod_empleado;
+    }
+
+    public Tratamiento(int codigo){
+        this.codigo = codigo;
     }
 
     public Tratamiento(String nombre) {

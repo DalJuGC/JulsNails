@@ -20,6 +20,16 @@ public class Promocion implements Serializable {
         this.vigencia = vigencia;
     }
 
+    public Promocion(String nombre, Float precio, Boolean vigencia){
+        this.nombre = nombre;
+        this.precio = precio;
+        this.vigencia = vigencia;
+    }
+
+    public Promocion(int codigo){
+        this.codigo = codigo;
+    }
+
     public Promocion(String nombre) {
         this.nombre = nombre;
     }

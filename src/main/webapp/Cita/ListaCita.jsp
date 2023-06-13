@@ -11,21 +11,21 @@
 <header>
     <nav>
         <ul>
-            <li><a href="/ProyectoDAW/index.jsp">Inicio</a></li>
-            <li><a href="/ProyectoDAW/Cliente/ListaCliente.jsp">Clientes</a></li>
-            <li><a href="/ProyectoDAW/Cita/ListaCita.jsp">Citas</a></li>
-            <li><a href="/ProyectoDAW/Tratamiento/ListaTra.jsp">Tratamientos</a></li>
-            <li><a href="/ProyectoDAW/Promocion/ListaProm.jsp">Promociones</a></li>
-            <li><a href="/ProyectoDAW/Empleado/ListaEmp.jsp">Empleados</a></li>
+            <li><a href="/JulsNails/index.jsp">Inicio</a></li>
+            <li><a href="/JulsNails/Cliente/ListaCliente.jsp">Clientes</a></li>
+            <li><a href="/JulsNails/Cita/ListaCita.jsp">Citas</a></li>
+            <li><a href="/JulsNails/Tratamiento/ListaTra.jsp">Tratamientos</a></li>
+            <li><a href="/JulsNails/Promocion/ListaProm.jsp">Promociones</a></li>
+            <li><a href="/JulsNails/Empleado/ListaEmp.jsp">Empleados</a></li>
         </ul>
     </nav>
 </header>
 <main>
     <div>
         <h1>Citas Registradas</h1>
-        <button onclick="location.href='/ProyectoDAW/Cita/RegistrarCita.jsp'">Registrar cita</button>
-        <button onclick="location.href='/ProyectoDAW/Cita/BuscarCita.jsp'">Buscar cita</button>
-        <button onclick="location.href='/ProyectoDAW/Cita/ModificarCita.jsp'">Modificar cita</button>
+        <button onclick="location.href='/JulsNails/Cita/RegistrarCita.jsp'">Registrar cita</button>
+        <button onclick="location.href='/JulsNails/Cita/BuscarCita.jsp'">Buscar cita</button>
+        <button onclick="location.href='/JulsNails/Cita/ModificarCita.jsp'">Modificar cita</button>
 
         <table>
             <thead>
@@ -40,25 +40,22 @@
             </thead>
             <tbody>
             <%
-                ArrayList<Cita> seleccionar = (ArrayList)session.getAttribute("datos");
-                if(seleccionar != null){
-                    for(Cita cita : seleccionar){
+                ArrayList<Cita> lista = (ArrayList<Cita>)session.getAttribute("datos");
+                if (lista != null && !lista.isEmpty()){
+                    for (Cita cita : lista){
             %>
             <tr>
                 <td><%out.print(cita.getCodigo()); %></td>
-                <td><%out.print(cita.getCod_Cliente()); %></td>
+                <td><%out.print(cita.getCod_cliente()); %></td>
                 <td><%out.print(cita.getFecha()); %></td>
                 <td><%out.print(cita.getHorario()); %></td>
-                <td><%out.print(cita.getCod_Tratamiento()); %></td>
-                <td><%out.print(cita.getCod_Promocion()); %></td>
+                <td><%out.print(cita.getCod_tratamiento()); %></td>
+                <td><%out.print(cita.getCod_promocion()); %></td>
+                <td><%if (cita.getCancelar()) out.print("Cancelada"); else out.print("Activa");%></td>
             </tr>
             <%
                     }
                 }
-                else{
-                    response.sendRedirect("/ProyectoDAW/SVLPromocion");
-                }
-                session.removeAttribute("datos");
             %>
             </tbody>
         </table>

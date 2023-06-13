@@ -9,21 +9,21 @@
 <header>
     <nav>
         <ul>
-            <li><a href="/ProyectoDAW/index.jsp">Inicio</a></li>
-            <li><a href="/ProyectoDAW/Cliente/ListaCliente.jsp">Clientes</a></li>
-            <li><a href="/ProyectoDAW/Cita/ListaCita.jsp">Citas</a></li>
-            <li><a href="/ProyectoDAW/Tratamiento/ListaTra.jsp">Tratamientos</a></li>
-            <li><a href="/ProyectoDAW/Promocion/ListaProm.jsp">Promociones</a></li>
-            <li><a href="/ProyectoDAW/Empleado/ListaEmp.jsp">Empleados</a></li>
+            <li><a href="/JulsNails/index.jsp">Inicio</a></li>
+            <li><a href="/JulsNails/Cliente/ListaCliente.jsp">Clientes</a></li>
+            <li><a href="/JulsNails/Cita/ListaCita.jsp">Citas</a></li>
+            <li><a href="/JulsNails/Tratamiento/ListaTra.jsp">Tratamientos</a></li>
+            <li><a href="/JulsNails/Promocion/ListaProm.jsp">Promociones</a></li>
+            <li><a href="/JulsNails/Empleado/ListaEmp.jsp">Empleados</a></li>
         </ul>
     </nav>
 </header>
 <main>
     <div>
         <h1>Tratamientos</h1>
-        <button onclick="location.href='/ProyectoDAW/Tratamiento/RegistrarTrat.jsp'">Agregar tratamiento</button>
-        <button onclick="location.href='/ProyectoDAW/Tratamiento/BuscarTrat.jsp'">Buscar tratamiento</button>
-        <button onclick="location.href='/ProyectoDAW/Tratamiento/ModificarTrat.jsp'">Modificar tratamiento</button>
+        <button onclick="location.href='/JulsNails/Tratamiento/RegistrarTrat.jsp'">Agregar tratamiento</button>
+        <button onclick="location.href='/JulsNails/Tratamiento/BuscarTrat.jsp'">Buscar tratamiento</button>
+        <button onclick="location.href='/JulsNails/Tratamiento/ModificarTrat.jsp'">Modificar tratamiento</button>
         <table>
             <thead>
             <tr>
@@ -35,23 +35,19 @@
             </thead>
             <tbody>
             <%
-                ArrayList<Tratamiento> seleccionar = (ArrayList)session.getAttribute("datos");
-                if(seleccionar != null){
-                    for(Tratamiento tra : seleccionar){
+                ArrayList<Tratamiento> lista = (ArrayList<Tratamiento>)session.getAttribute("datos");
+                if (lista != null && !lista.isEmpty()){
+                    for (Tratamiento tratamiento : lista){
             %>
             <tr>
-                <td><%out.print(tra.getCodigo()); %></td>
-                <td><%out.print(tra.getNombre()); %></td>
-                <td><%out.print(tra.getPrecio()); %></td>
-                <td><%out.print(tra.getCod_Empleado()); %></td>
+                <td><%out.print(tratamiento.getCodigo()); %></td>
+                <td><%out.print(tratamiento.getNombre()); %></td>
+                <td><%out.print(tratamiento.getPrecio()); %></td>
+                <td><%out.print(tratamiento.getCod_empleado()); %></td>
             </tr>
             <%
                     }
                 }
-                else{
-                    response.sendRedirect("/ProyectoDAW/SVLTratamiento");
-                }
-                session.removeAttribute("datos");
             %>
             </tbody>
         </table>

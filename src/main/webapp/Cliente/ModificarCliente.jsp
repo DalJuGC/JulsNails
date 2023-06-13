@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Modificar Cliente</title>
 </head>
 <body>
     <header>
@@ -18,22 +18,13 @@
     </header>
     <main>
         <div>
-            <form method="post" action="/ProyectoDAW/SVMCliente">
-                <%
-                Cliente cli = (Cliente)session.getAttribute("datos");
-                if (cli != null){
-                %>
+            <form method="post" action="/JulsNails/ModificarCliente">
                 <tr>
-                    <p>Codigo <input type="number" name="Codigo" value="<%out.print(cli.getCodigo());%>"></p>
-                    <p>Nombre <input type="text" name="Nombre" value="<%out.print(cli.getNombre()); %>"></p>
-                    <p>Telefono <input type="text" name="Telefono" value="<%out.print(cli.getTelefono()); %>"></p>
-                    <p><input type="submit" value="Registrar"></p>
+                <p>Nombre <input type="text" name="nombre" value="<%=request.getParameter("nombre") %>"></p>
+                <p>Teléfono <input type="text" name="telefono" value="<%=request.getParameter("telefono") %> %>"></p>
+                <p>Domicilio <input type="text" name="domicilio" value="<%=request.getParameter("domicilio") %>"></p>
                 </tr>
-                <%
-                }
-                session.removeAttribute("datos");
-                %>
-                <p><input type="submit" value="Guardar"/></p>
+                <p><input type="submit" value="Modificar" /></p>
             </form>
         </div>
     </main>
