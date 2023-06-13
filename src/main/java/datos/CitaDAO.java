@@ -67,6 +67,7 @@ public class CitaDAO {
             state.setTime(3, cita.getHorario());
             state.setInt(4, cita.getCod_tratamiento());
             state.setInt(5, cita.getCod_promocion());
+            state.setBoolean(6,cita.getCancelar());
 
             if (state.executeUpdate()==1) {
                 System.out.println("Cita registrada");

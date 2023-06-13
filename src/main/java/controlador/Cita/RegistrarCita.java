@@ -15,21 +15,17 @@ import java.sql.*;
 @WebServlet(name = "RegistrarCita", urlPatterns = {"/RegistrarCita"})
 public class RegistrarCita extends HttpServlet {
 
-    private int cod_cliente;
-    private String fecha;
-    private String horario;
-    private int cod_tratamiento;
-    private int cod_promocion;
     @Override
     protected void doPost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException,IOException {
-        cod_cliente = Integer.parseInt(rq.getParameter("cod_cliente"));
-        fecha = rq.getParameter("fecha");
-        horario = rq.getParameter("horario");
-        cod_tratamiento = Integer.parseInt(rq.getParameter("cod_tratamiento"));
-        cod_promocion = Integer.parseInt(rq.getParameter("cod_promocion"));
+        int cod_cliente = Integer.parseInt(rq.getParameter("cod_cliente"));
+        Date fecha = Date.valueOf(rq.getParameter("fecha"));
+        Time horario = Time.valueOf(rq.getParameter("horario"));
+        int cod_tratamiento = Integer.parseInt(rq.getParameter("cod_tratamiento"));
+        int cod_promocion = Integer.parseInt(rq.getParameter("cod_promocion"));
+        Boolean cancelar = Boolean.valueOf("cancelar");
 
         CitaDAO citaDAO = new CitaDAO();
-        Cita cita = new Cita(cod_cliente, fecha, horario, cod_tratamiento, cod_promocion);
+        Cita cita = new Cita(cod_cliente, fecha, horario, cod_tratamiento, cod_promocion, cancelar);
         citaDAO.insertar(cita);
 
         rs.sendRedirect("/JulsNails/Cita/RegistrarCita.jsp");

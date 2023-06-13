@@ -15,11 +15,12 @@ import java.util.List;
 @WebServlet(name = "ListaCliente", urlPatterns = {"/ListaCliente"})
 public class ListaCliente extends HttpServlet {
 
+    @Override
     protected void doGet(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
         ClienteDAO cliDAO = new ClienteDAO();
         List<Cliente> lista = cliDAO.listar();
-        rq.setAttribute("datos", lista);
+        rq.setAttribute("cliente", lista);
 
-        rs.sendRedirect("/JulsNails/ListaCliente.jsp");
+        rq.getRequestDispatcher("ListaCliente.jsp").forward(rq, rs);
     }
 }

@@ -14,43 +14,25 @@ public class Cita implements Serializable {
 
 
     //Constructor
-    public Cita(int codigo, int cod_cliente, Date fecha, Time horario, int cod_tratamiento, int cod_promocion, Boolean cancelar){
-        this.codigo = codigo;
+    public Cita(int cod_cliente, int codCliente, Date fecha, Time horario, int cod_tratamiento, int cod_promocion, Boolean cancelar){
+        this.cod_cliente = cod_cliente;
+        this.fecha = fecha;
+        this.horario = horario;
+        this.cod_tratamiento = cod_tratamiento;
+        this.cod_promocion = cod_promocion;
+    }
+
+    public Cita(int cod_cliente, Date fecha, Time horario, int cod_tratamiento, int cod_promocion, Boolean cancelar){
         this.cod_cliente = cod_cliente;
         this.fecha = fecha;
         this.horario = horario;
         this.cod_tratamiento = cod_tratamiento;
         this.cod_promocion = cod_promocion;
         this.cancelar = cancelar;
-    }
-
-    public Cita(int cod_cliente, Date fecha, Time horario, int cod_tratamiento, int cod_promocion){
-        this.cod_cliente = cod_cliente;
-        this.fecha = fecha;
-        this.horario = horario;
-        this.cod_tratamiento = cod_tratamiento;
-        this.cod_promocion = cod_promocion;
     }
 
     public Cita(int codigo){
         this.codigo = codigo;
-    }
-
-    public Cita(int cod_cliente, Date fecha, Time horario, int cod_tratamiento, int cod_promocion, Boolean cancelar) {
-        this.cod_cliente = cod_cliente;
-        this.fecha = fecha;
-        this.horario = horario;
-        this.cod_tratamiento = cod_tratamiento;
-        this.cod_promocion = cod_promocion;
-        this.cancelar = cancelar;
-    }
-
-    public Cita(int cod_cliente, String fecha, String horario, int cod_tratamiento, int cod_promocion) {
-        this.cod_cliente = cod_cliente;
-        this.fecha = Date.valueOf(fecha);
-        this.horario = Time.valueOf(horario);
-        this.cod_tratamiento = cod_tratamiento;
-        this.cod_promocion = cod_promocion;
     }
 
     //Getters y Setters

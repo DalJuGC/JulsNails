@@ -21,33 +21,32 @@
         </ul>
     </nav>
 </header>
-<main>
+
     <div>
         <h1>Clientes</h1>
         <button class="button" onclick="location.href='/JulsNails/Cliente/RegistrarCliente.jsp'">Registrar cliente</button>
         <button class="button" onclick="location.href='/JulsNails/Cliente/ModificarCliente.jsp'">Modificar cliente</button>
         <button class="button" onclick="location.href='/JulsNails/Cliente/BuscarCliente.jsp'">Buscar cliente</button>
-        <form>
-            <table>
-                <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Telefono</th>
-                    <th>Domicilio</th>
-                </tr>
-                </thead>
+        </div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Domicilio</th>
+            </tr>
+            </thead>
                 <tbody>
-                <%
-                    List<Cliente> lista = (List)request.getAttribute("cliente");
-                    if (lista != null) {
-                        for (Cliente cliente : lista) {
-                %>
+                <% List<Cliente> cliente=(List)request.getAttribute("cliente");
+                    if(cliente!=null) {
+                        for (Cliente lista : cliente) { %>
                 <tr>
-                    <td><%out.print(cliente.getCodigo()); %></td>
-                    <td><%out.print(cliente.getNombre()); %></td>
-                    <td><%out.print(cliente.getTelefono()); %></td>
-                    <td><%out.print(cliente.getDomicilio()); %></td>
+                    <td><%=lista.getCodigo() %></td>
+                    <td><%=lista.getNombre() %></td>
+                    <td><%=lista.getTelefono() %></td>
+                    <td><%=lista.getDomicilio() %></td>
                 </tr>
                 <%
                         }
@@ -55,8 +54,8 @@
                 %>
                 </tbody>
             </table>
-        </form>
+        </div>
     </div>
-</main>
+</form>
 </body>
 </html>

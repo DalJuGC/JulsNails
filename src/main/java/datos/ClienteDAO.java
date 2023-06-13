@@ -8,12 +8,13 @@ import java.sql.*;
 
 
 public class ClienteDAO {
-    public static final String selectSQL = "SELECT * FROM cliente";
+    public static final String selectSQL = "SELECT * FROM cliente ORDER BY codigo";
     public static final String insertSQL = "INSERT INTO cliente(nombre, telefono, domicilio) VALUES (?,?,?)";
     public static final String updateSQL = "UPDATE cliente SET nombre = ?, telefono = ?, domicilio = ? WHERE codigo = ?";
     public static final String deleteSQL = "DELETE FROM cliente WHERE codigo = ? ";
 
     private Connection connection;
+    private Statement st;
     private PreparedStatement state;
     private ResultSet result;
     private Cliente cliente;
@@ -24,14 +25,15 @@ public class ClienteDAO {
 
         try {
             connection = Conexion.getConnection();
-            state = connection.prepareStatement(selectSQL);
-            result = state.executeQuery();
+            st = connection.createStatement();
+            result = state.executeQuery(selectSQL);
 
             while (result.next()) {
                 int codigo = result.getInt("codigo");
                 String nombre = result.getString("nombre");
                 String telefono = result.getString("telefono");
                 String domicilio = result.getString("domicilio");
+
 
                 cliente = new Cliente(codigo, nombre, telefono, domicilio);
                 cli.add(cliente);

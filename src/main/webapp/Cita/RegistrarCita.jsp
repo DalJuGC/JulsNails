@@ -26,6 +26,7 @@
                     <p>Horario <input type="time" name="horario"></p>
                     <p>Tratamiento <input type="text" name="cod_tratamiento"></p>
                     <p>Promoción <input type="text" name="cod_promocion"></p>
+                    <p>Cancelar <lebel><input type="checkbox" name="cancelar"></lebel></p>
                     <p><input class="button" type="submit" value="Registrar"></p>
                 </form>
             </div>

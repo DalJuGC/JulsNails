@@ -21,9 +21,10 @@ public class ModificarCita extends HttpServlet {
         Time horario = Time.valueOf(rq.getParameter("horario"));
         int cod_tratamiento = Integer.parseInt(rq.getParameter("cod_tratamiento"));
         int cod_promocion = Integer.parseInt(rq.getParameter("cod_promocion"));
+        Boolean cancelar = Boolean.valueOf("cancelara");
 
         CitaDAO citaDAO = new CitaDAO();
-        Cita cita = new Cita(codigo, fecha, horario, cod_tratamiento, cod_promocion);
+        Cita cita = new Cita(codigo, fecha, horario, cod_tratamiento, cod_promocion, cancelar);
         citaDAO.modificar(cita);
 
         rs.sendRedirect("/JulsNails/Cita/ModificarCita.jsp");

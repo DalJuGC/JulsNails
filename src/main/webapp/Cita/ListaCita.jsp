@@ -26,7 +26,6 @@
 <main>
     <div>
         <h1>Citas Registradas</h1>
-
         <button class="button" onclick="location.href='/JulsNails/Cita/RegistrarCita.jsp'">Registrar cita</button>
         <button class="button" onclick="location.href='/JulsNails/Cita/ModificarCita.jsp'">Modificar cita</button>
         <button class="button" onclick="location.href='/JulsNails/Cita/BuscarCita.jsp'">Buscar cita</button>
