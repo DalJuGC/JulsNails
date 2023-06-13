@@ -23,9 +23,10 @@
         <img class="creator-image" src="/JulsNails/Imagenes/JulsNails.jpg">
     </div>
     <div class="container">
-        <p>Contacto</p>
-        <p>Galindo Castillo Dalia Julissa</p>
-        <p>zs19022216@estudiantes.uv.mx</p>
+        <p>CONTACTO</p>
+        <p>Dalia Julissa Galindo Castillo</p>
+        <a>zs19022216@estudiantes.uv.mx</a>
+        <a href="https://wa.me/qr/4XDJVIS5UGM5I1 ">2851087745</a>
     </div>
 </body>
 
